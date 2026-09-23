@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maison Riwaha Ndakaru · Parfums et huiles à Dakar</title>
+<meta name="description" content="Parfums et huiles concentrées sélectionnés à Dakar. Tenue longue durée, formats 30 à 100 ml, commande sur WhatsApp, paiement Orange Money ou Wave.">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230c0a08'/%3E%3Cpath d='M16 5c3.6 4.4 6 7.6 6 10.6A6 6 0 0 1 10 15.6C10 12.6 12.4 9.4 16 5z' fill='%23e0b76b'/%3E%3Crect x='13' y='22' width='6' height='5' rx='1.4' fill='%23e0b76b' opacity='.5'/%3E%3C/svg%3E">
+<!-- DEPLOY STEP : remplacer par l'URL réelle au moment de la mise en ligne -->
+<meta property="og:title" content="Maison Riwaha Ndakaru · Parfums et huiles à Dakar">
+<meta property="og:description" content="Parfums et huiles concentrées, tenue longue durée. Commande sur WhatsApp.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Karla:wght@400;700&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* ==================== TOKENS ==================== */
+:root{
+  --ink:#0c0a08; --ink-2:#141009; --ink-3:#1b140d;
+  --sand:#efe4d3; --sand-dim:#c9bda9; --sand-mute:#9a8d7c;
+  --gold:#e0b76b; --gold-deep:#a97f37; --ember:#8a3520;
+  --line:rgba(224,183,107,.14);
+  --line-strong:#7a6640;
+  --e1:cubic-bezier(.22,.61,.36,1);
+  --e2:cubic-bezier(.65,0,.35,1);
+  --display:"Amiri",Georgia,"Times New Roman",serif;
+  --body:"Karla",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"DM Mono",ui-monospace,"SFMono-Regular",monospace;
+  --shadow:0 24px 60px rgba(0,0,0,.55);
+  --pad:clamp(58px,8vw,118px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden;overflow-x:clip}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--body);background:var(--ink);color:var(--sand);line-height:1.65;
+  font-size:clamp(15px,1.02vw,16.5px);-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
+::selection{background:var(--gold);color:var(--ink)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+[hidden]{display:none!important}
+.skip{position:absolute;left:-999px;top:8px;z-index:200;background:var(--gold);color:var(--ink);padding:10px 16px;border-radius:999px;font-weight:700}
+.skip:focus{left:16px}
+.container{width:min(1160px,100% - 40px);margin-inline:auto}
+header,main,footer{position:relative;z-index:1}
+.off,.off *,.off *::before,.off *::after{animation-play-state:paused!important}
+body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused!important}
+
+/* ==================== SYSTÈME DE RÉVÉLATION ==================== */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .9s var(--e1),transform .9s var(--e1)}
+.rv.in{opacity:1;transform:none}
+.stag>*{opacity:0;transform:translateY(26px);transition:opacity .75s var(--e1),transform .75s var(--e1)}
+.stag.in>*{opacity:1;transform:none}
+.stag.in>*:nth-child(1){transition-delay:.04s}
+.stag.in>*:nth-child(2){transition-delay:.12s}
+.stag.in>*:nth-child(3){transition-delay:.2s}
+.stag.in>*:nth-child(4){transition-delay:.28s}
+.stag.in>*:nth-child(5){transition-delay:.36s}
+.stag.in>*:nth-child(6){transition-delay:.44s}
+.stag.in>*:nth-child(7){transition-delay:.52s}
+.stag.in>*:nth-child(8){transition-delay:.6s}
+.stag.in>*:nth-child(n+9){transition-delay:.66s}
+/* retrait des délais une fois l'entrée terminée : même spécificité, plus tard dans la source.
+   --fd laisse les filtres de la boutique poser leur propre décalage ensuite. */
+.stag.done>*:nth-child(n){transition-delay:var(--fd,0s)}
+
+/* ==================== COUCHE D'AMBIANCE ==================== */
+.env{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.env i{position:absolute;display:block;border-radius:50%;filter:blur(80px);will-change:transform}
+.env .g1{width:70vw;height:70vw;left:-20vw;top:-18vh;background:radial-gradient(circle,rgba(224,183,107,.16),transparent 66%);animation:drift1 96s var(--e2) -22s infinite alternate}
+.env .g2{width:62vw;height:62vw;right:-18vw;bottom:-20vh;background:radial-gradient(circle,rgba(138,53,32,.24),transparent 66%);animation:drift2 124s var(--e2) -55s infinite alternate}
+.env .g3{width:44vw;height:44vw;left:38vw;top:52vh;background:radial-gradient(circle,rgba(169,127,55,.13),transparent 68%);animation:drift3 148s var(--e2) -80s infinite alternate}
+@keyframes drift1{to{transform:translate3d(11vw,9vh,0) scale(1.18)}}
+@keyframes drift2{to{transform:translate3d(-9vw,-11vh,0) scale(1.12)}}
+@keyframes drift3{to{transform:translate3d(-13vw,7vh,0) scale(.86)}}
+.grain{position:absolute;inset:-70px;opacity:.055;pointer-events:none;animation:grain 7s steps(5) infinite;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-12px,6px)}40%{transform:translate(8px,-10px)}60%{transform:translate(-6px,-6px)}80%{transform:translate(10px,8px)}100%{transform:translate(0,0)}}
+@media (pointer:coarse){.grain{animation:none}}
+
+/* ==================== LE FIL D'AMBRE (élément signature) ==================== */
+.thread{position:fixed;left:max(8px,1.8vw);top:0;height:100vh;width:56px;z-index:2;pointer-events:none}
+.thread .track{stroke:rgba(224,183,107,.1);stroke-width:1.2;fill:none}
+.thread .draw{stroke:url(#tg);stroke-width:1.8;fill:none;stroke-linecap:round}
+.thread .drop{fill:var(--gold);opacity:0;filter:drop-shadow(0 0 6px rgba(224,183,107,.9))}
+@media (max-width:1240px){.thread{display:none}}
+
+/* ==================== EN-TÊTE ==================== */
+header{position:sticky;top:0;z-index:60}
+.bar{position:absolute;inset:0;background:rgba(12,10,8,.62);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;opacity:0;transition:opacity .5s var(--e1),border-color .5s var(--e1)}
+header.slim .bar{opacity:1;border-bottom-color:var(--line)}
+.progress{position:absolute;left:0;right:0;bottom:0;height:1.5px;transform:scaleX(0);transform-origin:0 50%;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold));will-change:transform}
+.navbar{position:relative;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px 0;transition:padding .5s var(--e1)}
+header.slim .navbar{padding:11px 0}
+.logo{display:inline-flex;align-items:baseline;gap:8px;font-family:var(--display);font-size:1.1rem;letter-spacing:.16em;
+  text-transform:uppercase;transform-origin:left center;transition:transform .5s var(--e1)}
+header.slim .logo{transform:scale(.92)}
+.logo i{font-style:normal;color:var(--gold)}
+.nav-links{display:flex;gap:26px;font-size:.83rem;letter-spacing:.05em}
+.nav-links a{position:relative;color:var(--sand-dim);padding:4px 0;transition:color .35s var(--e1)}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);
+  transform:scaleX(0);transform-origin:0 50%;transition:transform .45s var(--e1)}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--sand)}
+.nav-links a:hover::after,.nav-links a:focus-visible::after{transform:scaleX(1)}
+.cart-link{display:inline-flex;align-items:center;gap:9px;font-size:.83rem;letter-spacing:.04em;color:var(--sand);
+  border:1px solid var(--line-strong);border-radius:999px;padding:8px 14px;
+  transition:border-color .4s var(--e1),transform .4s var(--e1)}
+.cart-link:hover{border-color:var(--gold);transform:translateY(-2px)}
+.cart-count{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;
+  background:var(--gold);color:var(--ink);font-family:var(--mono);font-size:.72rem}
+.cart-count.pop{animation:pop .55s var(--e1)}
+@keyframes pop{0%{transform:scale(1)}35%{transform:scale(1.45)}100%{transform:scale(1)}}
+
+/* menu mobile */
+.burger{display:none;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  width:44px;height:44px;border-radius:50%;border:1px solid var(--line-strong);flex:none;
+  transition:border-color .4s var(--e1)}
+.burger:hover{border-color:var(--gold)}
+.burger i{display:block;width:17px;height:1.5px;background:var(--sand);transition:transform .45s var(--e1)}
+.burger[aria-expanded="true"] i:nth-child(1){transform:translateY(3.25px) rotate(45deg)}
+.burger[aria-expanded="true"] i:nth-child(2){transform:translateY(-3.25px) rotate(-45deg)}
+.menu{position:fixed;inset:0;z-index:70;display:flex;flex-direction:column;justify-content:center;gap:2px;
+  padding:0 clamp(24px,7vw,48px);background:rgba(9,7,5,.95);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  opacity:0;transition:opacity .45s var(--e1)}
+.menu.open{opacity:1}
+.menu a{font-family:var(--display);font-size:clamp(1.6rem,7vw,2.1rem);padding:15px 0;border-bottom:1px solid var(--line);
+  opacity:0;transform:translateY(20px);transition:opacity .55s var(--e1),transform .55s var(--e1)}
+.menu.open a{opacity:1;transform:none}
+.menu.open a:nth-child(1){transition-delay:.1s}
+.menu.open a:nth-child(2){transition-delay:.16s}
+.menu.open a:nth-child(3){transition-delay:.22s}
+.menu.open a:nth-child(4){transition-delay:.28s}
+.menu.open a:nth-child(5){transition-delay:.34s}
+.menu.open a:nth-child(6){transition-delay:.4s}
+.menu.open a:nth-child(7){transition-delay:.46s}
+.menu .m-cta{border-bottom:none;margin-top:22px;font-family:var(--body);font-size:.95rem;color:var(--gold)}
+body.locked{overflow:hidden}
+@media (max-width:940px){.burger{display:flex}}
+@media (min-width:941px){.menu{display:none}}
+
+/* ==================== BOUTONS ==================== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;position:relative;overflow:hidden;
+  border-radius:999px;padding:13px 26px;font-size:.92rem;font-weight:700;
+  transition:transform .45s var(--e1),box-shadow .45s var(--e1),border-color .45s var(--e1),color .45s var(--e1)}
+.btn span{position:relative;z-index:1}
+.btn-primary{background:var(--gold);color:#17110a;box-shadow:0 10px 30px rgba(224,183,107,.15)}
+.btn-primary::before{content:"";position:absolute;inset:0;transform:translateX(-120%);transition:transform .85s var(--e1);
+  background:linear-gradient(100deg,transparent 22%,rgba(255,255,255,.5) 50%,transparent 78%)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(224,183,107,.28)}
+.btn-primary:hover::before{transform:translateX(120%)}
+.btn-primary:active{transform:translateY(-1px)}
+.btn-outline{border:1px solid var(--line-strong);color:var(--sand)}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
+@media (pointer:coarse){.btn,.chip,.btn-add{min-height:44px;display:inline-flex;align-items:center;justify-content:center}}
+
+/* ==================== TITRES ==================== */
+section{padding:var(--pad) 0;position:relative}
+.kicker{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:.7rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.kicker::before{content:"";width:26px;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:0 50%;
+  transition:transform .9s var(--e1) .12s}
+.in .kicker::before{transform:scaleX(1)}
+.h2{font-family:var(--display);font-weight:400;font-size:clamp(2rem,4.4vw,3.3rem);line-height:1.14;
+  letter-spacing:-.01em;max-width:22ch;padding-bottom:.08em}
+.h2 em{font-style:italic;color:var(--gold)}
+.lede{color:var(--sand-dim);max-width:58ch;margin-top:18px;font-size:1.01rem}
+
+/* ==================== HÉRO ==================== */
+.hero{padding:clamp(36px,6vw,80px) 0 var(--pad);display:grid;grid-template-columns:1.06fr .94fr;
+  gap:clamp(28px,5vw,66px);align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;padding:5px 14px 5px 5px;border-radius:999px;
+  border:1px solid var(--line);font-size:.76rem;color:var(--sand-mute);margin-bottom:22px;background:rgba(20,16,9,.5)}
+.hero-badge b{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
+  padding:4px 10px;border-radius:999px;background:var(--gold);color:var(--ink)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,5.9vw,4.4rem);line-height:1.04;
+  letter-spacing:-.015em;margin-bottom:20px}
+.w{position:relative;display:inline-block;opacity:0;transform:translateY(30px);
+  transition:opacity .95s var(--e1),transform 1.05s var(--e1);transition-delay:calc(var(--i)*72ms)}
+.w::before{content:attr(data-w);position:absolute;left:0;top:0;filter:blur(13px);opacity:1;pointer-events:none;
+  transition:opacity .95s var(--e1);transition-delay:calc(var(--i)*72ms + 140ms)}
+.w.em{color:var(--gold);font-style:italic}
+.w.em::after{content:"";position:absolute;left:-10%;right:-10%;top:4%;bottom:4%;z-index:-1;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(224,183,107,.32),transparent 70%);filter:blur(24px);opacity:0;
+  transition:opacity 1.5s var(--e1);transition-delay:calc(var(--i)*72ms + 420ms)}
+.lit .w{opacity:1;transform:none}
+.lit .w::before{opacity:0}
+.lit .w.em::after{opacity:1}
+.hero-stage>*{opacity:0;transform:translateY(20px);transition:opacity .9s var(--e1),transform .9s var(--e1)}
+.lit .hero-stage>*{opacity:1;transform:none}
+.lit .hero-stage>.s1{transition-delay:.06s}
+.lit .hero-stage>.s2{transition-delay:.74s}
+.lit .hero-stage>.s3{transition-delay:.88s}
+.lit .hero-stage>.s4{transition-delay:1.04s}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin:26px 0 16px}
+.hero-small{font-size:.82rem;color:var(--sand-mute)}
+.cue{display:inline-flex;align-items:center;gap:12px;margin-top:34px;font-family:var(--mono);font-size:.64rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--sand-mute)}
+.cue i{position:relative;display:block;width:1px;height:34px;overflow:hidden;
+  background:linear-gradient(var(--line-strong),transparent)}
+.cue i::after{content:"";position:absolute;left:-1.5px;top:0;width:4px;height:4px;border-radius:50%;background:var(--gold);
+  animation:falldrop 2.6s var(--e2) infinite}
+@keyframes falldrop{0%{transform:translateY(-6px);opacity:0}25%{opacity:1}80%{opacity:.15}100%{transform:translateY(34px);opacity:0}}
+
+/* la vitrine du héro */
+.hero-visual{will-change:transform}
+.vitrine{position:relative;border-radius:26px;overflow:hidden;aspect-ratio:4/5;border:1px solid var(--line);
+  background:var(--ink-2);box-shadow:var(--shadow);opacity:0;transform:translateY(34px) scale(.985);
+  transition:opacity 1.4s var(--e1) .12s,transform 1.4s var(--e1) .12s}
+.lit .vitrine{opacity:1;transform:none}
+.vitrine>img{width:100%;height:100%;object-fit:cover;will-change:transform;animation:kenburns 34s var(--e2) -6s infinite alternate}
+@keyframes kenburns{from{transform:scale(1.02) translate3d(0,0,0)}to{transform:scale(1.13) translate3d(-1.6%,-2.4%,0)}}
+.vitrine::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 72% 56% at 50% 46%,transparent 28%,rgba(12,10,8,.6) 100%)}
+.halo{position:absolute;left:50%;top:52%;width:76%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
+  pointer-events:none;filter:blur(38px);animation:breathe 9s var(--e2) -2s infinite alternate;
+  background:radial-gradient(circle,rgba(224,183,107,.42),transparent 62%)}
+@keyframes breathe{from{opacity:.26;transform:translate(-50%,-50%) scale(.92)}to{opacity:.6;transform:translate(-50%,-50%) scale(1.08)}}
+.notes{position:absolute;inset:0;pointer-events:none;z-index:2}
+.notes b{position:absolute;font-family:var(--mono);font-size:.64rem;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--sand-dim);padding:7px 13px;border-radius:999px;
+  border:1px solid rgba(224,183,107,.26);background:rgba(10,8,6,.55);
+  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+  opacity:0;transform:translateY(12px);transition:opacity .8s var(--e1),transform .8s var(--e1);
+  animation:floatnote 11s var(--e2) infinite alternate}
+.lit .notes b{opacity:1;transform:none}
+.notes b:nth-child(1){left:6%;top:16%;transition-delay:1.25s;animation-delay:0s}
+.notes b:nth-child(2){right:7%;top:37%;transition-delay:1.4s;animation-delay:-3.6s}
+.notes b:nth-child(3){left:10%;bottom:22%;transition-delay:1.55s;animation-delay:-7.2s}
+@keyframes floatnote{from{translate:0 0}to{translate:0 -12px}}
+
+/* ==================== PARFUMS ==================== */
+.head-row{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between}
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin:34px 0 32px}
+.chip{border:1px solid var(--line-strong);border-radius:999px;padding:9px 17px;font-size:.82rem;color:var(--sand-dim);
+  transition:color .4s var(--e1),border-color .4s var(--e1),background-color .4s var(--e1),transform .4s var(--e1)}
+.chip:hover{color:var(--sand);border-color:var(--gold);transform:translateY(-2px)}
+.chip.is-on{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:22px}
+.card{position:relative;display:flex;flex-direction:column;border-radius:20px;border:1px solid var(--line);overflow:hidden;
+  background:linear-gradient(160deg,var(--ink-3),var(--ink-2) 55%,var(--ink));
+  transition:transform .55s var(--e1),opacity .55s var(--e1),border-color .55s var(--e1),box-shadow .55s var(--e1)}
+.card:hover{transform:translateY(-8px);border-color:rgba(224,183,107,.4);box-shadow:var(--shadow)}
+.card.out{opacity:0;transform:scale(.94);pointer-events:none}
+.card-img{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--ink-2)}
+.card-img img{width:100%;height:100%;object-fit:cover;filter:saturate(.94) contrast(1.03);
+  transition:transform 1s var(--e1)}
+.card:hover .card-img img{transform:scale(1.07)}
+.card-img::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:linear-gradient(180deg,rgba(12,10,8,.35) 0%,transparent 24%,transparent 56%,rgba(12,10,8,.94) 100%)}
+.sheen{position:absolute;inset:-40%;pointer-events:none;z-index:2;opacity:0;transform:translateX(-70%);
+  transition:transform 1.1s var(--e1),opacity .4s var(--e1);
+  background:linear-gradient(104deg,transparent 38%,rgba(224,183,107,.24) 50%,transparent 62%)}
+.card:hover .sheen{transform:translateX(70%);opacity:1}
+.card-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:9px;flex:1}
+.card h3{font-family:var(--display);font-weight:400;font-size:1.16rem;line-height:1.25}
+.card p{font-size:.85rem;color:var(--sand-mute);flex:1}
+.price{font-family:var(--mono);font-size:.84rem;color:var(--gold)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:999px;
+  border:1px solid var(--line);color:var(--sand-mute)}
+.btn-add{position:relative;margin-top:4px;border:1px solid var(--line-strong);border-radius:999px;padding:11px 16px;
+  font-size:.84rem;font-weight:700;color:var(--sand);overflow:hidden;
+  transition:background-color .45s var(--e1),color .45s var(--e1),border-color .45s var(--e1)}
+.btn-add:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.btn-add .lbl,.btn-add .ok{display:flex;align-items:center;justify-content:center;gap:7px;
+  transition:opacity .35s var(--e1),transform .35s var(--e1)}
+.btn-add .ok{position:absolute;inset:0;opacity:0;transform:translateY(65%)}
+.btn-add.added{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.btn-add.added .lbl{opacity:0;transform:translateY(-65%)}
+.btn-add.added .ok{opacity:1;transform:none}
+.btn-add .ok svg path{stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .5s var(--e1) .12s}
+.btn-add.added .ok svg path{stroke-dashoffset:0}
+.droplet{position:fixed;z-index:120;width:15px;height:15px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 34% 30%,#fff4dc,var(--gold) 55%,var(--gold-deep));
+  box-shadow:0 0 18px rgba(224,183,107,.8)}
+
+/* ==================== LA COLLECTION PRIVÉE ==================== */
+#collection{overflow:hidden}
+.cp-head{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between;margin-bottom:34px}
+/* 200px cale 5 colonnes sur grand écran : les 25 flacons forment un carré plein */
+.cp-wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.cp{position:relative;display:block;aspect-ratio:4/5;border-radius:14px;overflow:hidden;
+  border:1px solid var(--line);background:var(--ink-2);
+  transition:transform .55s var(--e1),opacity .55s var(--e1),border-color .55s var(--e1),box-shadow .55s var(--e1)}
+.cp:hover{transform:translateY(-6px);border-color:rgba(224,183,107,.45);box-shadow:var(--shadow)}
+.cp img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--e1)}
+.cp:hover img{transform:scale(1.08)}
+.cp::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,transparent 42%,rgba(9,7,5,.92) 100%)}
+.cp-meta{position:absolute;left:12px;right:48px;bottom:11px;z-index:2;display:flex;flex-direction:column;gap:1px}
+.cp-name{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sand);
+  transition:color .45s var(--e1)}
+.cp:hover .cp-name{color:var(--gold)}
+.cp-price{font-family:var(--mono);font-size:.62rem;color:var(--gold-deep);transition:color .45s var(--e1)}
+.cp:hover .cp-price{color:var(--gold)}
+.cp-add{position:absolute;right:11px;bottom:11px;z-index:3;width:32px;height:32px;border-radius:50%;
+  display:grid;place-items:center;color:var(--gold);border:1px solid rgba(224,183,107,.4);
+  background:rgba(10,8,6,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  transition:transform .45s var(--e1),background-color .45s var(--e1),color .45s var(--e1),border-color .45s var(--e1)}
+.cp:hover .cp-add{border-color:var(--gold);background:rgba(224,183,107,.18)}
+.cp-add:hover{transform:scale(1.15);background:var(--gold);color:var(--ink)}
+.cp-add svg{grid-area:1/1;width:14px;height:14px}
+.cp-add .plus{transition:opacity .3s var(--e1),transform .45s var(--e1)}
+.cp-add .tick{opacity:0;transform:rotate(-90deg) scale(.4);transition:opacity .3s var(--e1),transform .45s var(--e1)}
+.cp-add.added{background:var(--gold);border-color:var(--gold);color:var(--ink);transform:scale(1.08)}
+.cp-add.added .plus{opacity:0;transform:rotate(90deg) scale(.4)}
+.cp-add.added .tick{opacity:1;transform:none}
+@media (pointer:coarse){.cp-add{width:44px;height:44px}.cp-meta{right:62px}}
+.cp-note{margin-top:26px;font-size:.84rem;color:var(--sand-mute)}
+
+/* le bandeau prix, un seul chiffre pour toute la gamme */
+.cp-flag{position:relative;flex:none;padding:16px 26px;border-radius:16px;border:1px solid rgba(224,183,107,.3);
+  background:linear-gradient(150deg,rgba(224,183,107,.1),transparent 70%);text-align:right}
+.cp-flag::before{content:"";position:absolute;inset:0;border-radius:16px;pointer-events:none;
+  background:radial-gradient(ellipse 80% 70% at 70% 0%,rgba(224,183,107,.22),transparent 70%);
+  animation:glow 8s var(--e2) -3s infinite alternate}
+.cp-flag-num{position:relative;z-index:1;display:block;font-family:var(--mono);font-size:1.5rem;color:var(--gold);line-height:1.1}
+.cp-flag-num small{font-size:.78rem;letter-spacing:.06em}
+.cp-flag-lb{position:relative;z-index:1;display:block;margin-top:4px;font-family:var(--mono);font-size:.62rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--sand-mute)}
+
+/* la bande d'arrivage */
+.arrivage{margin-top:44px;position:relative;border-radius:18px;border:1px solid var(--line);
+  background:var(--ink-2);overflow:hidden;padding:12px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.arr-track{display:flex;width:max-content;animation:slide 46s linear infinite}
+.arr-track figure{flex:none;width:clamp(210px,25vw,310px);margin-right:12px;aspect-ratio:3/2;
+  border-radius:12px;overflow:hidden}
+.arr-track img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) brightness(.92)}
+@keyframes slide{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+html.rm .arr-track{animation:none;transform:none}
+.arr-label{display:flex;align-items:center;gap:12px;margin-bottom:14px;font-family:var(--mono);font-size:.66rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--sand-mute)}
+.arr-label i{display:block;width:6px;height:6px;border-radius:50%;background:var(--gold);
+  animation:blip 3.4s var(--e2) infinite}
+@keyframes blip{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.25)}}
+
+/* ==================== LE RITUEL (moment interactif) ==================== */
+.rite{position:relative;display:grid;grid-template-columns:1fr 1fr;border-radius:28px;overflow:hidden;
+  border:1px solid var(--line);background:var(--ink-2);box-shadow:var(--shadow);min-height:min(560px,78vh)}
+.rite-media{position:relative;overflow:hidden}
+.rite-media>img{width:100%;height:100%;object-fit:cover;filter:saturate(.7) brightness(.66)}
+.rite-media .veil{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 50% 56%,rgba(224,183,107,.4),transparent 62%);
+  opacity:calc(.1 + .8*var(--p,0))}
+.rite-media .edge{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(12,10,8,.45),transparent 40%,rgba(12,10,8,.92))}
+.rings{position:absolute;left:50%;top:56%;width:44%;aspect-ratio:1;translate:-50% -50%;pointer-events:none}
+.rings i{position:absolute;inset:0;border:1px solid rgba(224,183,107,.55);border-radius:50%;
+  transform:scale(calc(.3 + var(--p,0)*var(--m,1)));opacity:calc(var(--p,0)*var(--o,1))}
+.rings i:nth-child(1){--m:.85;--o:.9}
+.rings i:nth-child(2){--m:1.35;--o:.55}
+.rings i:nth-child(3){--m:1.95;--o:.3}
+.rite-body{padding:clamp(26px,3.4vw,48px);display:flex;flex-direction:column;justify-content:center;gap:16px}
+.rite-notes{list-style:none;display:flex;flex-direction:column;gap:15px;margin:8px 0 4px}
+.rite-notes li{--k:clamp(0,(var(--p,0) - var(--th,0))*5,1);display:flex;gap:16px;align-items:baseline;
+  opacity:calc(.2 + .8*var(--k));transform:translateY(calc((1 - var(--k))*10px))}
+.rite-notes li:nth-child(1){--th:.05}
+.rite-notes li:nth-child(2){--th:.4}
+.rite-notes li:nth-child(3){--th:.74}
+.rite-notes b{font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
+  min-width:56px;font-weight:500}
+.rite-notes span{color:var(--sand-dim);font-size:.94rem}
+.hold{align-self:flex-start;display:inline-flex;align-items:center;gap:14px;border:1px solid var(--line-strong);
+  border-radius:999px;padding:8px 24px 8px 8px;touch-action:none;-webkit-user-select:none;user-select:none;
+  transition:border-color .4s var(--e1),transform .4s var(--e1)}
+.hold:hover{border-color:var(--gold)}
+.hold.holding{transform:scale(.98)}
+.hold .ring{position:relative;width:42px;height:42px;flex:none}
+.hold .ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.hold .ring circle{fill:none;stroke-width:2}
+.hold .ring .bg{stroke:rgba(224,183,107,.18)}
+.hold .ring .fg{stroke:var(--gold);stroke-linecap:round;stroke-dasharray:113;stroke-dashoffset:calc(113*(1 - var(--p,0)))}
+.hold .ring::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;translate:-50% -50%;border-radius:50%;
+  background:var(--gold);transform:scale(calc(.55 + var(--p,0)*.75));box-shadow:0 0 calc(var(--p,0)*18px) rgba(224,183,107,.9)}
+.hold-lbl{font-size:.9rem;font-weight:700}
+.rite-pay{opacity:0;transform:translateY(14px);transition:opacity .9s var(--e1) .2s,transform .9s var(--e1) .2s}
+.rite.is-complete .rite-pay{opacity:1;transform:none}
+.rite.is-complete .hold{border-color:rgba(224,183,107,.35);opacity:.55;pointer-events:none}
+.rite-pay p{color:var(--sand);font-family:var(--display);font-size:1.16rem;line-height:1.5;margin-bottom:16px}
+
+/* ==================== TARIFS ==================== */
+.tarifs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tarif{position:relative;border-radius:20px;border:1px solid var(--line);padding:30px 26px;overflow:hidden;
+  background:linear-gradient(165deg,var(--ink-3),var(--ink));
+  transition:transform .55s var(--e1),opacity .55s var(--e1),border-color .55s var(--e1)}
+.tarif:hover{transform:translateY(-7px);border-color:rgba(224,183,107,.36)}
+.tarif h3{font-family:var(--display);font-weight:400;font-size:1.75rem;position:relative;z-index:1}
+.tarif .num{font-family:var(--mono);font-size:1.45rem;color:var(--gold);margin:16px 0 4px;position:relative;z-index:1}
+.tarif .sub{font-size:.8rem;color:var(--sand-mute);margin-bottom:14px;position:relative;z-index:1}
+.tarif p{font-size:.88rem;color:var(--sand-dim);position:relative;z-index:1}
+.tarif.reco{border-color:rgba(224,183,107,.38)}
+.tarif.reco::before{content:"";position:absolute;inset:0;pointer-events:none;animation:glow 7s var(--e2) -2s infinite alternate;
+  background:radial-gradient(ellipse 90% 62% at 50% 0%,rgba(224,183,107,.2),transparent 70%)}
+@keyframes glow{from{opacity:.2}to{opacity:.8}}
+.flag{position:absolute;top:16px;right:16px;z-index:2;font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink);background:var(--gold);padding:4px 10px;border-radius:999px}
+.note{font-size:.84rem;color:var(--sand-mute);margin-top:22px}
+
+/* ==================== LA MAISON ==================== */
+.editorial{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(28px,4.6vw,62px);align-items:center}
+.ed-media{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:3/4;border:1px solid var(--line)}
+.ed-media img{width:100%;height:100%;object-fit:cover;animation:kenburns 42s var(--e2) -12s infinite alternate}
+.ed-media::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(200deg,transparent 40%,rgba(12,10,8,.7))}
+.list{list-style:none;margin-top:26px}
+.list li{display:flex;gap:18px;padding:16px 0;border-bottom:1px solid var(--line);align-items:baseline;
+  color:var(--sand-dim);font-size:.95rem}
+.list li b{font-family:var(--mono);color:var(--gold);font-size:.7rem;letter-spacing:.14em;font-weight:500;flex:none}
+
+/* ==================== AVIS ==================== */
+.avis{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
+.avis .a{border-radius:18px;border:1px solid var(--line);padding:26px 24px;background:rgba(20,16,9,.5);
+  transition:transform .55s var(--e1),opacity .55s var(--e1),border-color .55s var(--e1)}
+.avis .a:nth-child(2){margin-top:34px}
+.avis .a:nth-child(3){margin-top:68px}
+.avis .a:hover{transform:translateY(-7px);border-color:rgba(224,183,107,.34)}
+.stars{display:flex;gap:4px;margin-bottom:14px;font-size:.9rem}
+.stars span{color:var(--gold);opacity:.16;transform:scale(.6);
+  transition:opacity .5s var(--e1),transform .5s var(--e1);transition-delay:calc(var(--i)*95ms)}
+.in .stars span{opacity:.28;transform:none}
+.in .stars span.on{opacity:1}
+.avis q{display:block;font-family:var(--display);font-size:1.08rem;line-height:1.5;color:var(--sand);quotes:' ab a0' ' a0 bb'}
+.avis .who{margin-top:16px;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sand-mute)}
+
+/* ==================== PANIER ==================== */
+.panier{max-width:720px;margin-inline:auto;border-radius:24px;border:1px solid var(--line);
+  padding:clamp(24px,3vw,38px);background:linear-gradient(165deg,var(--ink-3),var(--ink));box-shadow:var(--shadow)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 0;border-bottom:1px solid var(--line)}
+.row .n{font-size:.99rem}
+.row .m{font-family:var(--mono);font-size:.76rem;color:var(--sand-mute)}
+.btn-remove{border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:.76rem;color:var(--sand-mute);
+  transition:color .35s var(--e1),border-color .35s var(--e1),transform .35s var(--e1)}
+.btn-remove:hover{color:var(--sand);border-color:var(--ember);transform:translateX(3px)}
+.total{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin:24px 0 22px}
+.total .lb{font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sand-mute)}
+.total .t{font-family:var(--mono);font-size:1.5rem;color:var(--gold)}
+.empty{color:var(--sand-mute);font-size:.94rem;padding:6px 0 2px}
+.cart-msg{margin-top:14px;font-size:.84rem;color:var(--gold);opacity:0;transform:translateY(-6px);
+  transition:opacity .45s var(--e1),transform .45s var(--e1)}
+.cart-msg.show{opacity:1;transform:none}
+.cart-mini{font-size:.82rem;color:var(--sand-mute);margin-top:16px}
+
+/* ==================== CONTACT ==================== */
+.contact{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(26px,4vw,56px);align-items:start}
+.info p{font-size:.95rem;color:var(--sand-dim);margin-bottom:8px}
+.info strong{color:var(--sand);font-weight:700}
+.contact-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.steps{list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:22px}
+.steps li{position:relative;padding-left:56px;color:var(--sand-dim);font-size:.92rem}
+.steps li::before{counter-increment:s;content:"0" counter(s);position:absolute;left:0;top:-2px;width:38px;height:38px;
+  display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--gold)}
+.steps li b{display:block;font-family:var(--display);font-weight:400;font-size:1.12rem;color:var(--sand);margin-bottom:2px}
+
+/* ==================== PIED ==================== */
+footer{border-top:1px solid var(--line);padding:34px 0 46px;font-size:.82rem;color:var(--sand-mute)}
+.foot{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
+footer a{color:var(--gold)}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width:940px){
+  .hero,.rite,.editorial,.contact{grid-template-columns:1fr}
+  .hero-visual{order:-1}
+  .vitrine{aspect-ratio:5/4}
+  .rite{min-height:0}
+  .rite-media{aspect-ratio:16/10}
+  .rite-media .edge{background:linear-gradient(180deg,rgba(12,10,8,.3),transparent 45%,rgba(12,10,8,.95))}
+  .tarifs,.avis{grid-template-columns:1fr}
+  .avis .a:nth-child(2),.avis .a:nth-child(3){margin-top:0}
+  .nav-links{display:none}
+  .ed-media{aspect-ratio:4/3}
+}
+@media (max-width:520px){
+  .grid{grid-template-columns:1fr}
+  .cp-wall{grid-template-columns:repeat(2,1fr);gap:10px}
+  .cp-name{font-size:.58rem;right:34px}
+  .cue{display:none}
+}
+@media (max-height:620px){.cue{display:none}}
+
+/* ==================== MOUVEMENT RÉDUIT ==================== */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;transition-delay:0s!important}
+}
+html.rm{scroll-behavior:auto}
+html.rm *,html.rm *::before,html.rm *::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+  transition-duration:.001ms!important;transition-delay:0s!important}
+</style>
+<noscript><style>
+/* Sans JavaScript, aucune animation ne peut jouer : on montre tout tout de suite. */
+.rv,.stag>*,.w,.hero-stage>*,.vitrine,.notes b,.rite-pay,.stars span{opacity:1!important;transform:none!important}
+.w::before{opacity:0!important}
+.rite-notes li{opacity:1!important;transform:none!important}
+</style></noscript>
+</head>
+<body>
+
+<a class="skip" href="#main">Aller au contenu</a>
+
+<div class="env" aria-hidden="true">
+  <i class="g1"></i><i class="g2"></i><i class="g3"></i>
+  <div class="grain"></div>
+</div>
+
+<svg class="thread" viewBox="0 0 56 900" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="tg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a97f37"/>
+      <stop offset=".45" stop-color="#e0b76b"/>
+      <stop offset="1" stop-color="#8a3520"/>
+    </linearGradient>
+  </defs>
+  <path class="track" d="M28 0 C 6 130 50 250 28 380 C 6 510 50 630 28 760 C 16 832 34 866 28 900"/>
+  <path class="draw" id="tpath" d="M28 0 C 6 130 50 250 28 380 C 6 510 50 630 28 760 C 16 832 34 866 28 900"/>
+  <circle class="drop" id="tdrop" r="3.4" cx="28" cy="0"/>
+</svg>
+
+<header id="hdr">
+  <div class="bar" aria-hidden="true"></div>
+  <div class="container navbar">
+    <a class="logo" href="#main">Maison <i>Riwaha</i></a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="#parfums">Parfums</a>
+      <a href="#collection">Collection</a>
+      <a href="#rituel">Le rituel</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#avis">Avis</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:10px">
+      <a href="#panier" class="cart-link">Panier <span class="cart-count" id="cart-count" aria-live="polite">0</span></a>
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+        <i aria-hidden="true"></i><i aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+</header>
+
+<nav class="menu" id="menu" aria-label="Menu mobile" hidden>
+  <a href="#parfums">Parfums</a>
+  <a href="#collection">Collection</a>
+  <a href="#rituel">Le rituel</a>
+  <a href="#tarifs">Tarifs</a>
+  <a href="#avis">Avis</a>
+  <a href="#contact">Contact</a>
+  <a class="m-cta" href="https://wa.me/221710110894" target="_blank" rel="noopener">Commander sur WhatsApp</a>
+</nav>
+
+<main id="main" tabindex="-1">
+
+  <!-- ================= HÉRO ================= -->
+  <section class="container hero" id="hero">
+    <div class="hero-stage">
+      <div class="s1"><span class="hero-badge"><b>Nouveau</b> Sélection saison fraîche</span></div>
+      <h1 id="hero-title">Des parfums qui laissent <em>une empreinte</em>.</h1>
+      <div class="s2">
+        <p class="lede">Parfums et huiles concentrées choisis pour tenir toute la journée sous le climat de Dakar. Vous commandez sur WhatsApp, vous payez par mobile, vous êtes livré.</p>
+      </div>
+      <div class="s3">
+        <div class="hero-cta">
+          <a href="https://wa.me/221710110894" class="btn btn-primary" target="_blank" rel="noopener"><span>Commander sur WhatsApp</span></a>
+          <a href="#parfums" class="btn btn-outline"><span>Voir les parfums</span></a>
+        </div>
+      </div>
+      <div class="s4">
+        <p class="hero-small">Orange Money, Wave, espèces à la livraison. Dakar et environs.</p>
+        <span class="cue" aria-hidden="true"><i></i> Faites défiler</span>
+      </div>
+    </div>
+
+    <div class="hero-visual" id="hero-visual">
+      <div class="vitrine" data-live>
+        <img src="assets/img/hero-bottle.jpg" alt="Flacon de parfum ambré éclairé dans la pénombre" fetchpriority="high" decoding="async">
+        <div class="halo" aria-hidden="true"></div>
+        <div class="notes" aria-hidden="true">
+          <b>Oud</b><b>Ambre</b><b>Vanille</b>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PARFUMS ================= -->
+  <section id="parfums">
+    <div class="container">
+      <div class="rv head-row">
+        <div>
+          <span class="kicker">01 / La sélection</span>
+          <h2 class="h2">Nos parfums et <em>huiles</em></h2>
+        </div>
+        <p class="lede" style="margin:0">Les flacons réellement en stock. Prix indiqués par format, ajout au panier en un clic.</p>
+      </div>
+
+      <div class="filters rv" role="group" aria-label="Filtrer les parfums">
+        <button class="chip is-on" data-f="all" aria-pressed="true">Tout</button>
+        <button class="chip" data-f="homme" aria-pressed="false">Homme</button>
+        <button class="chip" data-f="femme" aria-pressed="false">Femme</button>
+        <button class="chip" data-f="mixte" aria-pressed="false">Mixte</button>
+        <button class="chip" data-f="oriental" aria-pressed="false">Oriental</button>
+        <button class="chip" data-f="huile" aria-pressed="false">Huiles et maison</button>
+      </div>
+
+      <div class="grid stag" id="grid">
+
+        <article class="card" data-cat="homme">
+          <div class="card-img"><img src="assets/img/bleu-de-chanel.jpg" alt="Bleu de Chanel" loading="lazy" decoding="async"><span class="sheen" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>Bleu de Chanel</h3>
+            <p>Frais, boisé et élégant. Pour le travail, les rendez-vous pro et les soirées habillées.</p>
+            <div class="price">50 ml · 20 000 FCFA</div>
+            <div class="tags"><span class="tag">Boisé</span><span class="tag">Homme</span><span class="tag">Signature</span></div>
+            <button class="btn-add" data-name="Bleu de Chanel" data-price="20000">
+              <span class="lbl">Ajouter au panier</span>
+              <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card" data-cat="homme">
+          <div class="card-img"><img src="assets/img/creed.jpg" alt="Creed" loading="lazy" decoding="async"><span class="sheen" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>Creed</h3>
+            <p>Parfum de caractère, classe et puissant. Pour marquer les esprits lors des grands événements.</p>
+            <div class="price">50 ml · 25 000 FCFA</div>
+            <div class="tags"><span class="tag">Luxe</span><span class="tag">Homme</span><span class="tag">Occasion</span></div>
+            <button class="btn-add" data-name="Creed" data-price="25000">
+              <span class="lbl">Ajouter au panier</span>
+              <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card" data-cat="homme">
+          <div class="card-img"><img src="assets/img/hugo-boss.jpg" alt="Hugo Boss" loading="lazy" decoding="async"><span class="sheen" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>Hugo Boss</h3>
+            <p>Moderne, propre et accessible. Pour le bureau, les sorties entre amis et le quotidien.</p>
+            <div class="price">50 ml · 15 000 FCFA</div>
+            <div class="tags"><span class="tag">Moderne</span><span class="tag">Homme</span><span class="tag">Quotidien</span></div>
+            <button class="btn-add" data-name="Hugo Boss" data-price="15000">
+              <span class="lbl">Ajouter au panier</span>
+              <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card" data-cat="mixte">
+          <div class="card-img"><img src="assets/img/prada-milano.jpg" alt="Prada Milano" loading="lazy" decoding="async"><span class="sheen" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>Prada Milano</h3>
+            <p>Sophistiqué, avec un sillage propre et chic. Pour les amateurs de fragrances raffinées.</p>
+            <div class="price">50 ml · 22 000 FCFA</div>
+            <div class="tags"><span class="tag">Chic</span><span class="tag">Mixte</span><span class="tag">Raffiné</span></div>
+            <button class="btn-add" data-name="Prada Milano" data-price="22000">
+              <span class="lbl">Ajouter au panier</span>
+              <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card" data-cat="homme">
+          <div class="card-img"><img src="assets/img/sauvage-dior.jpg" alt="Sauvage Dior" loading="lazy" decoding="async"><span class="sheen" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>Sauvage Dior</h3>
+            <p>Fraîcheur intense et notes épicées. Un classique pour les fans de parfums masculins modernes.</p>
+            <div class="price">50 ml · 23 000 FCFA</div>
+            <div class="tags"><span class="tag">Best-seller</span><span class="tag">Homme</span><span class="tag">Intense</span></div>
+            <button class="btn-add" data-name="Sauvage Dior" data-price="23000">
+              <span class="lbl">Ajouter au panier</span>
+              <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card" data-cat="mixte">
+          <div class="card-img"><img src="assets/img/valentino.jpg" alt="Valentino" loading="lazy" decoding="async"><span class="sheen" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>Valentino</h3>
+            <p>Élégant avec une touche gourmande. Pour les soirées et les occasions spéciales.</p>
+            <div class="price">50 ml · 21 000 FCFA</div>
+            <div class="tags"><span class="tag">Luxe</span><span class="tag">Mixte</span><span class="tag">Soirée</span></div>
+            <button class="btn-add" data-name="Valentino" data-price="21000">
+              <span class="lbl">Ajouter au panier</span>
+              <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card" data-cat="mixte oriental">
+          <div class="card-img"><img src="assets/img/khamrah.jpg" alt="Khamrah" loading="lazy" decoding="async"><span class="sheen" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>Khamrah</h3>
+            <p>Oriental, chaud et gourmand. Notes sucrées, vanillées et épicées.</p>
+            <div class="price">100 ml · 18 000 FCFA</div>
+            <div class="tags"><span class="tag">Oriental</span><span class="tag">Mixte</span><span class="tag">Hiver</span></div>
+            <button class="btn-add" data-name="Khamrah" data-price="18000">
+              <span class="lbl">Ajouter au panier</span>
+              <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card" data-cat="mixte oriental">
+          <div class="card-img"><img src="assets/img/khamrah-dukhan.jpg" alt="Khamrah Dukhan" loading="lazy" decoding="async"><span class="sheen" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>Khamrah Dukhan</h3>
+            <p>Version fumée de Khamrah, avec un côté encens et oud plus marqué.</p>
+            <div class="price">100 ml · 20 000 FCFA</div>
+            <div class="tags"><span class="tag">Oud</span><span class="tag">Fumé</span><span class="tag">Intense</span></div>
+            <button class="btn-add" data-name="Khamrah Dukhan" data-price="20000">
+              <span class="lbl">Ajouter au panier</span>
+              <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card" data-cat="mixte oriental">
+          <div class="card-img"><img src="assets/img/lattafa.jpg" alt="Lattafa" loading="lazy" decoding="async"><span class="sheen" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>Lattafa</h3>
+            <p>Parfum arabe aux notes riches, pour ceux qui aiment les odeurs orientales marquées.</p>
+            <div class="price">100 ml · 19 000 FCFA</div>
+            <div class="tags"><span class="tag">Arabe</span><span class="tag">Oriental</span><span class="tag">Mixte</span></div>
+            <button class="btn-add" data-name="Lattafa" data-price="19000">
+              <span class="lbl">Ajouter au panier</span>
+              <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card" data-cat="mixte oriental">
+          <div class="card-img"><img src="assets/img/moussuf.jpg" alt="Moussuf" loading="lazy" decoding="async"><span class="sheen" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>Moussuf</h3>
+            <p>Boisé et ambré, apprécié pour son sillage long et chaleureux.</p>
+            <div class="price">100 ml · 17 000 FCFA</div>
+            <div class="tags"><span class="tag">Boisé</span><span class="tag">Ambré</span><span class="tag">Longue tenue</span></div>
+            <button class="btn-add" data-name="Moussuf" data-price="17000">
+              <span class="lbl">Ajouter au panier</span>
+              <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card" data-cat="femme">
+          <div class="card-img"><img src="assets/img/xaxati-exotic.jpg" alt="Xaxati Exotic" loading="lazy" decoding="async"><span class="sheen" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>Xaxati Exotic</h3>
+            <p>Fragrance colorée et exotique, pour celles qui aiment se démarquer.</p>
+            <div class="price">50 ml · 14 000 FCFA</div>
+            <div class="tags"><span class="tag">Féminin</span><span class="tag">Exotique</span><span class="tag">Coloré</span></div>
+            <button class="btn-add" data-name="Xaxati Exotic" data-price="14000">
+              <span class="lbl">Ajouter au panier</span>
+              <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card" data-cat="mixte">
+          <div class="card-img"><img src="assets/img/hayaati.jpg" alt="Hayaati" loading="lazy" decoding="async"><span class="sheen" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>Hayaati</h3>
+            <p>Doux et moderne, pour le quotidien et les sorties détendues.</p>
+            <div class="price">100 ml · 16 000 FCFA</div>
+            <div class="tags"><span class="tag">Quotidien</span><span class="tag">Mixte</span><span class="tag">Moderne</span></div>
+            <button class="btn-add" data-name="Hayaati" data-price="16000">
+              <span class="lbl">Ajouter au panier</span>
+              <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card" data-cat="huile">
+          <div class="card-img"><img src="assets/img/rifaaqat.jpg" alt="Rifaqaat, huile de parfum" loading="lazy" decoding="async"><span class="sheen" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>Rifaqaat · Huile de parfum</h3>
+            <p>Huile concentrée, pour ceux qui aiment les parfums qui tiennent longtemps sur la peau.</p>
+            <div class="price">12 ml · 12 000 FCFA</div>
+            <div class="tags"><span class="tag">Huile</span><span class="tag">Concentrée</span><span class="tag">Longue tenue</span></div>
+            <button class="btn-add" data-name="Rifaqaat - Huile de parfum" data-price="12000">
+              <span class="lbl">Ajouter au panier</span>
+              <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card" data-cat="huile mixte">
+          <div class="card-img"><img src="assets/img/huile-parfum.jpg" alt="Huile de parfum concentrée" loading="lazy" decoding="async"><span class="sheen" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>Huile de parfum concentrée</h3>
+            <p>Huile douce à appliquer par petites touches. Pour la prière, le travail ou la maison.</p>
+            <div class="price">10 ml · 8 000 FCFA</div>
+            <div class="tags"><span class="tag">Huile</span><span class="tag">Mixte</span><span class="tag">Discrète</span></div>
+            <button class="btn-add" data-name="Huile de parfum concentree" data-price="8000">
+              <span class="lbl">Ajouter au panier</span>
+              <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="card" data-cat="huile">
+          <div class="card-img"><img src="assets/img/diffuseur.jpg" alt="Diffuseur de parfum en fonctionnement" loading="lazy" decoding="async"><span class="sheen" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>Diffuseur de parfum</h3>
+            <p>Diffuseur élégant pour parfumer la maison ou le bureau en continu.</p>
+            <div class="price">1 pièce · 10 000 FCFA</div>
+            <div class="tags"><span class="tag">Maison</span><span class="tag">Ambiance</span><span class="tag">Décoration</span></div>
+            <button class="btn-add" data-name="Diffuseur de parfum" data-price="10000">
+              <span class="lbl">Ajouter au panier</span>
+              <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= LA COLLECTION PRIVÉE ================= -->
+  <section id="collection" data-live>
+    <div class="container">
+      <div class="rv cp-head">
+        <div>
+          <span class="kicker">02 / La collection privée</span>
+          <h2 class="h2">Collection Privée <em>Paris</em></h2>
+        </div>
+        <div class="cp-flag">
+          <span class="cp-flag-num"><span data-count="10000">10 000</span> <small>FCFA</small></span>
+          <span class="cp-flag-lb">le flacon, les 25 modèles</span>
+        </div>
+      </div>
+
+      <p class="lede rv" style="margin:0 0 34px">Vingt-cinq flacons, tous en stock à Dakar, tous au même prix. Ajoutez au panier ceux qui vous plaisent.</p>
+
+      <div class="cp-wall stag">
+        <article class="cp">
+          <img src="assets/img/cp/coco.jpg" alt="Flacon Coco, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Coco</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Coco (Collection Privée)" data-price="10000" aria-label="Ajouter Coco au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/linterdit.jpg" alt="Flacon L'Interdit, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">L'Interdit</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="L'Interdit (Collection Privée)" data-price="10000" aria-label="Ajouter L'Interdit au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/sauvage.jpg" alt="Flacon Sauvage, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Sauvage</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Sauvage (Collection Privée)" data-price="10000" aria-label="Ajouter Sauvage au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/bleu-azur.jpg" alt="Flacon Bleu Azur, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Bleu Azur</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Bleu Azur (Collection Privée)" data-price="10000" aria-label="Ajouter Bleu Azur au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/jadore.jpg" alt="Flacon J'Adore, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">J'Adore</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="J'Adore (Collection Privée)" data-price="10000" aria-label="Ajouter J'Adore au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/opium.jpg" alt="Flacon Opium, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Opium</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Opium (Collection Privée)" data-price="10000" aria-label="Ajouter Opium au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/khamrah.jpg" alt="Flacon Khamrah, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Khamrah</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Khamrah (Collection Privée)" data-price="10000" aria-label="Ajouter Khamrah au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/yara.jpg" alt="Flacon Yara, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Yara</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Yara (Collection Privée)" data-price="10000" aria-label="Ajouter Yara au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/homme-intense.jpg" alt="Flacon Homme Intense, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Homme Intense</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Homme Intense (Collection Privée)" data-price="10000" aria-label="Ajouter Homme Intense au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/kirke.jpg" alt="Flacon Kirke, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Kirke</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Kirke (Collection Privée)" data-price="10000" aria-label="Ajouter Kirke au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/gris.jpg" alt="Flacon Gris, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Gris</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Gris (Collection Privée)" data-price="10000" aria-label="Ajouter Gris au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/madawi.jpg" alt="Flacon Madawi, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Madawi</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Madawi (Collection Privée)" data-price="10000" aria-label="Ajouter Madawi au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/mula.jpg" alt="Flacon Mula, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Mula</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Mula (Collection Privée)" data-price="10000" aria-label="Ajouter Mula au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/erba.jpg" alt="Flacon Erba, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Erba</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Erba (Collection Privée)" data-price="10000" aria-label="Ajouter Erba au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/chronic.jpg" alt="Flacon Chronic, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Chronic</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Chronic (Collection Privée)" data-price="10000" aria-label="Ajouter Chronic au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/beaute.jpg" alt="Flacon Beauté, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Beauté</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Beauté (Collection Privée)" data-price="10000" aria-label="Ajouter Beauté au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/blue-magic.jpg" alt="Flacon Blue Magic, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Blue Magic</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Blue Magic (Collection Privée)" data-price="10000" aria-label="Ajouter Blue Magic au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/alien.jpg" alt="Flacon Alien, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Alien</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Alien (Collection Privée)" data-price="10000" aria-label="Ajouter Alien au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/million.jpg" alt="Flacon Million, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Million</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Million (Collection Privée)" data-price="10000" aria-label="Ajouter Million au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/solid.jpg" alt="Flacon Solid, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Solid</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Solid (Collection Privée)" data-price="10000" aria-label="Ajouter Solid au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/coco-vanille.jpg" alt="Flacon Coco Vanille, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Coco Vanille</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Coco Vanille (Collection Privée)" data-price="10000" aria-label="Ajouter Coco Vanille au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/krypto.jpg" alt="Flacon Krypto, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Krypto</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Krypto (Collection Privée)" data-price="10000" aria-label="Ajouter Krypto au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/musc-blanc.jpg" alt="Flacon Musc Blanc, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Musc Blanc</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Musc Blanc (Collection Privée)" data-price="10000" aria-label="Ajouter Musc Blanc au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/aisha.jpg" alt="Flacon Aisha, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Aisha</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Aisha (Collection Privée)" data-price="10000" aria-label="Ajouter Aisha au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+        <article class="cp">
+          <img src="assets/img/cp/myla.jpg" alt="Flacon Myla, Collection Privée Paris" loading="lazy" decoding="async">
+          <span class="cp-meta"><span class="cp-name">Myla</span><span class="cp-price">10 000 FCFA</span></span>
+          <button class="cp-add" data-name="Myla (Collection Privée)" data-price="10000" aria-label="Ajouter Myla au panier">
+            <svg class="plus" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </article>
+      </div>
+
+      <p class="cp-note rv">Format 50 ml. Besoin d'un conseil pour choisir entre deux flacons&nbsp;? Écrivez sur WhatsApp, on vous oriente.</p>
+
+      <div class="arrivage rv" aria-label="Photos du dernier arrivage">
+        <div class="arr-label"><i aria-hidden="true"></i> Dernier arrivage, photos réelles du stock</div>
+        <div class="arr-track">
+          <figure><img src="assets/img/cp/arrivage-1.jpg" alt="Carton de flacons Collection Privée à l'ouverture" loading="lazy" decoding="async"></figure>
+          <figure><img src="assets/img/cp/arrivage-2.jpg" alt="Flacons rangés dans leur carton" loading="lazy" decoding="async"></figure>
+          <figure><img src="assets/img/cp/arrivage-3.jpg" alt="Flacons vus du dessus, capuchons gravés" loading="lazy" decoding="async"></figure>
+          <figure><img src="assets/img/cp/arrivage-4.jpg" alt="Flacons noirs à filet doré dans leur carton" loading="lazy" decoding="async"></figure>
+          <figure aria-hidden="true"><img src="assets/img/cp/arrivage-1.jpg" alt="" loading="lazy" decoding="async"></figure>
+          <figure aria-hidden="true"><img src="assets/img/cp/arrivage-2.jpg" alt="" loading="lazy" decoding="async"></figure>
+          <figure aria-hidden="true"><img src="assets/img/cp/arrivage-3.jpg" alt="" loading="lazy" decoding="async"></figure>
+          <figure aria-hidden="true"><img src="assets/img/cp/arrivage-4.jpg" alt="" loading="lazy" decoding="async"></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LE RITUEL (moment interactif) ================= -->
+  <section id="rituel">
+    <div class="container">
+      <div class="rite rv" id="rite">
+        <div class="rite-media">
+          <img src="assets/img/oud-scene.jpg" alt="Flacons d'attar et copeaux d'oud sur un plateau de cuivre" loading="lazy" decoding="async">
+          <div class="veil" aria-hidden="true"></div>
+          <div class="rings" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="edge" aria-hidden="true"></div>
+        </div>
+        <div class="rite-body">
+          <span class="kicker">03 / Le rituel</span>
+          <h2 class="h2">Laissez le parfum <em>se poser</em></h2>
+          <p class="lede" style="margin-top:10px">Un parfum ne se lit pas d'un coup. Gardez le doigt appuyé et regardez les trois temps arriver.</p>
+          <ol class="rite-notes">
+            <li><b>Tête</b><span>Les dix premières minutes. Vif, frais, il annonce la couleur.</span></li>
+            <li><b>Cœur</b><span>Deux à quatre heures. C'est là que le parfum prend sa forme.</span></li>
+            <li><b>Fond</b><span>Le reste de la journée. Ambre, oud, bois. C'est ce qui reste sur vous.</span></li>
+          </ol>
+          <button class="hold" id="hold" aria-describedby="hold-help">
+            <span class="ring" aria-hidden="true">
+              <svg viewBox="0 0 42 42"><circle class="bg" cx="21" cy="21" r="18"/><circle class="fg" cx="21" cy="21" r="18"/></svg>
+            </span>
+            <span class="hold-lbl">Appuyez et gardez</span>
+          </button>
+          <span class="sr-only" id="hold-help">Maintenez le bouton enfoncé pour faire apparaître les trois temps du parfum.</span>
+          <div class="rite-pay">
+            <p>C'est le fond qui décide. Un parfum qui tient jusqu'au soir, c'est celui qu'on vous reconnaît.</p>
+            <a href="#parfums" class="btn btn-outline"><span>Trouver le mien</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TARIFS ================= -->
+  <section id="tarifs" data-live>
+    <div class="container">
+      <div class="rv">
+        <span class="kicker">04 / Formats</span>
+        <h2 class="h2">Trois formats, un <em>budget</em></h2>
+      </div>
+      <div class="tarifs stag" style="margin-top:36px">
+        <div class="tarif">
+          <h3>30 ml</h3>
+          <div class="num">À partir de <span data-count="8000">8 000</span> FCFA</div>
+          <div class="sub">8 000 à 10 000 FCFA selon le parfum</div>
+          <p>Le format pour tester une fragrance ou la garder dans le sac.</p>
+        </div>
+        <div class="tarif reco">
+          <span class="flag">Le plus pris</span>
+          <h3>50 ml</h3>
+          <div class="num">À partir de <span data-count="13000">13 000</span> FCFA</div>
+          <div class="sub">13 000 à 18 000 FCFA selon le parfum</div>
+          <p>Le format standard, bon pour plusieurs semaines d'usage quotidien.</p>
+        </div>
+        <div class="tarif">
+          <h3>100 ml</h3>
+          <div class="num">À partir de <span data-count="20000">20 000</span> FCFA</div>
+          <div class="sub">20 000 à 28 000 FCFA selon le parfum</div>
+          <p>Le format économique quand vous avez trouvé votre signature.</p>
+        </div>
+      </div>
+      <p class="note rv">Le prix exact dépend du parfum et des promotions du moment. Demandez le vôtre sur WhatsApp.</p>
+    </div>
+  </section>
+
+  <!-- ================= LA MAISON ================= -->
+  <section id="maison">
+    <div class="container editorial">
+      <div class="ed-media rv" data-live>
+        <img src="assets/img/driftwood.jpg" alt="Flacon de parfum posé sur une branche de bois flotté" loading="lazy" decoding="async">
+      </div>
+      <div class="rv">
+        <span class="kicker">05 / La maison</span>
+        <h2 class="h2">Pourquoi Maison <em>Riwaha</em></h2>
+        <ul class="list">
+          <li><b>01</b> Des fragrances choisies pour le climat et le rythme de vie à Dakar.</li>
+          <li><b>02</b> Des notes chaudes, vanille, ambre, oud, bois, qui ressortent par temps frais.</li>
+          <li><b>03</b> Plusieurs formats, du 30 ml au 100 ml, à des prix clairs.</li>
+          <li><b>04</b> Un conseil direct sur WhatsApp avant d'acheter, pas après.</li>
+          <li><b>05</b> Livraison à Dakar, envoi en région selon conditions.</li>
+        </ul>
+        <p class="lede">Un bon parfum n'est pas seulement une odeur. C'est un message silencieux. Dites-nous votre style et votre environnement de travail, on vous oriente vers la fragrance qui vous ressemble.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= AVIS ================= -->
+  <section id="avis">
+    <div class="container">
+      <div class="rv">
+        <span class="kicker">06 / Retours clients</span>
+        <h2 class="h2">Ils ont testé, ils <em>valident</em></h2>
+      </div>
+      <div class="avis stag" style="margin-top:38px">
+        <div class="a">
+          <div class="stars" aria-label="5 étoiles sur 5"><span class="on">★</span><span class="on">★</span><span class="on">★</span><span class="on">★</span><span class="on">★</span></div>
+          <q>Bleu de Chanel acheté chez Maison Riwaha, qualité au top et livraison rapide.</q>
+          <div class="who">Moustapha · Dakar</div>
+        </div>
+        <div class="a">
+          <div class="stars" aria-label="4 étoiles sur 5"><span class="on">★</span><span class="on">★</span><span class="on">★</span><span class="on">★</span><span>★</span></div>
+          <q>J'ai pris Khamrah et une huile, parfait pour l'hiver, ça tient toute la journée.</q>
+          <div class="who">Aïssatou · Rufisque</div>
+        </div>
+        <div class="a">
+          <div class="stars" aria-label="5 étoiles sur 5"><span class="on">★</span><span class="on">★</span><span class="on">★</span><span class="on">★</span><span class="on">★</span></div>
+          <q>Service sérieux, bons conseils sur les parfums arabes comme Lattafa et Moussuf.</q>
+          <div class="who">Khadim · Pikine</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PANIER ================= -->
+  <section id="panier">
+    <div class="container">
+      <div class="rv" style="text-align:center">
+        <span class="kicker">07 / Panier</span>
+        <h2 class="h2" style="margin-inline:auto">Votre <em>commande</em></h2>
+      </div>
+      <div class="panier rv" style="margin-top:36px">
+        <div id="cart-items"></div>
+        <p class="empty" id="cart-empty">Votre panier est vide. Ajoutez un parfum depuis la sélection.</p>
+        <div class="total">
+          <span class="lb">Total estimé</span>
+          <span class="t" id="cart-total">0 FCFA</span>
+        </div>
+        <button id="btn-whatsapp" class="btn btn-primary"><span>Valider la commande sur WhatsApp</span></button>
+        <p class="cart-msg" id="cart-msg" role="status"></p>
+        <p class="cart-mini">WhatsApp s'ouvre avec le détail de votre commande déjà écrit. Vous confirmez votre zone, votre numéro, puis vous recevez les informations de paiement, Orange Money ou Wave.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact">
+    <div class="container contact">
+      <div class="info rv">
+        <span class="kicker">08 / Contact</span>
+        <h2 class="h2">Une question sur un <em>flacon</em>&nbsp;?</h2>
+        <p class="lede">Coffret cadeau, commande en volume, conseil sur une note. Écrivez, on répond.</p>
+        <p style="margin-top:22px"><strong>WhatsApp&nbsp;:</strong> +221 71 011 08 94</p>
+        <p><strong>Instagram&nbsp;:</strong> @maison_riwaha_ndakaru</p>
+        <p><strong>Localisation&nbsp;:</strong> Dakar, Sénégal</p>
+        <div class="contact-actions">
+          <a href="https://wa.me/221710110894" class="btn btn-primary" target="_blank" rel="noopener"><span>Écrire sur WhatsApp</span></a>
+          <a href="https://instagram.com/maison_riwaha_ndakaru" class="btn btn-outline" target="_blank" rel="noopener"><span>Voir l'Instagram</span></a>
+        </div>
+      </div>
+      <ol class="steps stag">
+        <li><b>Choisissez</b>Ajoutez vos flacons au panier, ou dites simplement le nom du parfum.</li>
+        <li><b>Envoyez</b>Le message part sur WhatsApp avec le détail. Précisez le format et votre zone.</li>
+        <li><b>Recevez</b>Paiement Orange Money, Wave ou espèces à la livraison, à Dakar et environs.</li>
+      </ol>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container foot">
+    <span>© <span id="year"></span> Maison Riwaha Ndakaru · Dakar, Sénégal</span>
+    <span><a href="#main">Retour en haut</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+
+/* Garde-fou absolu, posé en toute première ligne pour qu'il survive à n'importe
+   quelle erreur plus bas. C'est un détecteur de panne, pas une minuterie : il ne
+   dévoile la page que si le système d'apparition n'a jamais démarré, autrement
+   dit si le script a planté avant de s'installer. Un site invisible est pire
+   qu'un site sans animation. */
+var revealSystemAlive=false;
+setTimeout(function(){
+  if(revealSystemAlive) return;
+  var els=document.querySelectorAll('.rv:not(.in),.stag:not(.in)');
+  for(var i=0;i<els.length;i++){els[i].classList.add('in');els[i].classList.add('done');}
+  var h=document.getElementById('hero');
+  if(h) h.classList.add('lit');
+},3000);
+
+var $=function(s,c){return (c||document).querySelector(s);};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));};
+var root=document.documentElement, body=document.body;
+var mqRM=window.matchMedia('(prefers-reduced-motion: reduce)');
+var RM=mqRM.matches;
+if(RM) root.classList.add('rm');
+function clamp(v,a,b){return v<a?a:(v>b?b:v);}
+function fmt(v){return String(v).replace(/\B(?=(\d{3})+(?!\d))/g,' ');}
+
+/* ============================================================
+   LE NUMÉRO WHATSAPP. Une seule ligne à changer pour tout le site.
+   ============================================================ */
+var PHONE='221710110894';
+
+function waLink(msg){return 'https://wa.me/'+PHONE+'?text='+encodeURIComponent(msg);}
+
+/* tous les liens WhatsApp du site pointent sur le numéro ci-dessus */
+$$('a[href*="wa.me/"]').forEach(function(a){
+  var q=a.href.indexOf('?');
+  a.href='https://wa.me/'+PHONE+(q>-1?a.href.slice(q):'');
+});
+
+
+$('#year').textContent=new Date().getFullYear();
+
+/* ---------- 1. Découpe du titre héro (mots + copie floue) ---------- */
+(function splitHero(){
+  var h=$('#hero-title'); if(!h) return;
+  var full=h.textContent.replace(/\s+/g,' ').trim();
+  var nodes=Array.prototype.slice.call(h.childNodes);
+  var vis=document.createElement('span'); vis.setAttribute('aria-hidden','true');
+  var i=0;
+  nodes.forEach(function(n){
+    var em=(n.nodeType===1 && n.tagName==='EM');
+    (n.textContent||'').split(/(\s+)/).forEach(function(part){
+      if(!part) return;
+      if(/^\s+$/.test(part)){vis.appendChild(document.createTextNode(' ')); return;}
+      var w=document.createElement('span');
+      w.className='w'+(em?' em':'');
+      w.style.setProperty('--i',i++);
+      w.setAttribute('data-w',part);
+      w.textContent=part;
+      vis.appendChild(w);
+    });
+  });
+  var sr=document.createElement('span'); sr.className='sr-only'; sr.textContent=full;
+  h.textContent=''; h.appendChild(sr); h.appendChild(vis);
+})();
+
+/* rampe d'ouverture : la première bande s'assemble toute seule au chargement */
+var hero=$('#hero');
+function litHero(){hero.classList.add('lit');}
+if(RM){ litHero(); }
+else{
+  requestAnimationFrame(function(){requestAnimationFrame(litHero);});
+  /* filet de sécurité : si la page ouvre dans un onglet en arrière-plan, rAF ne tourne pas */
+  setTimeout(litHero,700);
+}
+
+/* ---------- 1b. Menu mobile ---------- */
+(function(){
+  var burger=$('#burger'), menu=$('#menu'), last=null;
+  if(!burger||!menu) return;
+  function open(){
+    last=document.activeElement;
+    menu.hidden=false;
+    burger.setAttribute('aria-expanded','true');
+    burger.setAttribute('aria-label','Fermer le menu');
+    body.classList.add('locked');
+    requestAnimationFrame(function(){menu.classList.add('open');});
+    setTimeout(function(){menu.classList.add('open');},60);
+    var first=menu.querySelector('a'); if(first) first.focus();
+  }
+  function close(){
+    menu.classList.remove('open');
+    burger.setAttribute('aria-expanded','false');
+    burger.setAttribute('aria-label','Ouvrir le menu');
+    body.classList.remove('locked');
+    setTimeout(function(){menu.hidden=true;}, RM?0:420);
+    if(last&&last.focus) last.focus();
+  }
+  burger.addEventListener('click',function(){
+    burger.getAttribute('aria-expanded')==='true'?close():open();
+  });
+  menu.addEventListener('click',function(e){ if(e.target.tagName==='A') close(); });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&burger.getAttribute('aria-expanded')==='true') close();
+  });
+  window.addEventListener('resize',function(){
+    if(window.innerWidth>940&&burger.getAttribute('aria-expanded')==='true') close();
+  },{passive:true});
+})();
+
+/* ---------- 2. Entrées au scroll ---------- */
+function markIn(el){
+  if(el.classList.contains('in')) return;
+  el.classList.add('in');
+  var n=el.children?el.children.length:0;
+  setTimeout(function(){el.classList.add('done');}, 900+Math.min(n,9)*90);
+}
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(!e.isIntersecting) return;
+    io.unobserve(e.target); markIn(e.target);
+  });
+},{threshold:.12,rootMargin:'0px 0px -10% 0px'});
+$$('.rv,.stag').forEach(function(el){io.observe(el);});
+
+/* Filet de sécurité. Si la page ouvre déjà défilée (rechargement, lien avec
+   ancre, retour navigateur), l'observateur peut ne jamais signaler la section
+   que le visiteur a sous les yeux, et elle reste invisible. On balaie donc
+   nous-mêmes ce qui est à l'écran. */
+var revealsLeft=1;
+function sweepReveals(){
+  var vh=window.innerHeight, left=0;
+  $$('.rv,.stag').forEach(function(el){
+    if(el.classList.contains('in')) return;
+    var b=el.getBoundingClientRect();
+    if(b.top<vh && b.bottom>0){io.unobserve(el); markIn(el);} else left++;
+  });
+  revealsLeft=left;
+  return left;
+}
+sweepReveals();
+revealSystemAlive=true;   /* le détecteur de panne peut se rendormir */
+window.addEventListener('load',sweepReveals);
+setTimeout(sweepReveals,350);
+setTimeout(sweepReveals,1200);
+
+/* étoiles des avis : arrivée en séquence */
+$$('.stars').forEach(function(s){ $$('span',s).forEach(function(sp,i){sp.style.setProperty('--i',i);}); });
+
+/* ---------- 3. Éléments vivants : en pause hors écran et onglet caché ---------- */
+var ioLive=new IntersectionObserver(function(es){
+  es.forEach(function(e){e.target.classList.toggle('off',!e.isIntersecting);});
+},{threshold:0});
+$$('[data-live]').forEach(function(el){ioLive.observe(el);});
+document.addEventListener('visibilitychange',function(){body.classList.toggle('paused',document.hidden);});
+
+/* ---------- 4. Boucle rAF unique (barre, fil d'ambre, parallaxe, en-tête) ---------- */
+var bar=$('#progress'), tpath=$('#tpath'), tdrop=$('#tdrop'), visual=$('#hero-visual'), hdr=$('#hdr');
+var TLEN=0;
+if(tpath && tpath.getTotalLength){
+  TLEN=tpath.getTotalLength();
+  tpath.style.strokeDasharray=TLEN;
+  tpath.style.strokeDashoffset=TLEN;
+}
+var target=window.scrollY, cur=target, running=false, lastP=-1, lastPar=-1, slim=null;
+
+function write(y){
+  var max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
+  var p=clamp(y/max,0,1);
+  if(Math.abs(p-lastP)>0.0006){
+    lastP=p;
+    bar.style.transform='scaleX('+p.toFixed(4)+')';
+    if(TLEN){
+      tpath.style.strokeDashoffset=(TLEN*(1-p)).toFixed(2);
+      var pt=tpath.getPointAtLength(TLEN*p);
+      tdrop.setAttribute('cx',pt.x.toFixed(2));
+      tdrop.setAttribute('cy',pt.y.toFixed(2));
+      tdrop.style.opacity=(p>0.004 && p<0.997)?'1':'0';
+    }
+  }
+  if(!RM && visual){
+    var par=clamp(y*0.055,0,90);
+    if(Math.abs(par-lastPar)>0.4){lastPar=par;visual.style.transform='translate3d(0,'+par.toFixed(1)+'px,0)';}
+  }
+  var s=y>36;
+  if(s!==slim){slim=s;hdr.classList.toggle('slim',s);}
+}
+function loop(){
+  cur+=(target-cur)*0.16;
+  if(Math.abs(target-cur)<0.4) cur=target;
+  write(cur);
+  if(cur!==target) requestAnimationFrame(loop); else running=false;
+}
+window.addEventListener('scroll',function(){
+  target=window.scrollY;
+  if(revealsLeft>0) sweepReveals();
+  if(RM){cur=target;write(cur);return;}
+  if(!running){running=true;requestAnimationFrame(loop);}
+},{passive:true});
+window.addEventListener('resize',function(){
+  lastP=-1;lastPar=-1;target=cur=window.scrollY;write(cur);
+},{passive:true});
+write(cur);
+
+/* ---------- 5. Filtres de la boutique ---------- */
+var chips=$$('.chip'), cards=$$('#grid .card');
+chips.forEach(function(c){
+  c.addEventListener('click',function(){
+    chips.forEach(function(x){
+      var on=(x===c);
+      x.classList.toggle('is-on',on);
+      x.setAttribute('aria-pressed',on?'true':'false');
+    });
+    var f=c.getAttribute('data-f'), vis=0;
+    cards.forEach(function(card){
+      var match=(f==='all')||(' '+card.getAttribute('data-cat')+' ').indexOf(' '+f+' ')>-1
+                 ||card.getAttribute('data-cat').split(' ').indexOf(f)>-1;
+      if(match){
+        var d=vis*35; vis++;
+        clearTimeout(card._h);
+        card.hidden=false;
+        card.style.setProperty('--fd',RM?'0ms':(d+'ms'));
+        requestAnimationFrame(function(){card.classList.remove('out');});
+        setTimeout(function(){card.classList.remove('out');},40);
+      }else{
+        card.style.setProperty('--fd','0ms');
+        card.classList.add('out');
+        if(RM){card.hidden=true;}
+        else{
+          clearTimeout(card._h);
+          card._h=setTimeout(function(){card.hidden=true;},420);
+        }
+      }
+    });
+  });
+});
+
+/* ---------- 6. Panier ---------- */
+var cart=[];
+var elCount=$('#cart-count'), elItems=$('#cart-items'), elTotal=$('#cart-total'),
+    elEmpty=$('#cart-empty'), elMsg=$('#cart-msg');
+var shown=0, totalRaf=0;
+
+var totalSafety=0;
+function animateTotal(to){
+  cancelAnimationFrame(totalRaf);
+  clearTimeout(totalSafety);
+  if(RM){shown=to;elTotal.textContent=fmt(to)+' FCFA';return;}
+  var from=shown, t0=performance.now(), d=560;
+  /* si l'animation ne tourne pas, le total juste s'affiche */
+  totalSafety=setTimeout(function(){shown=to;elTotal.textContent=fmt(to)+' FCFA';}, d+200);
+  (function step(t){
+    var k=clamp((t-t0)/d,0,1), e=1-Math.pow(1-k,3);
+    shown=Math.round(from+(to-from)*e);
+    elTotal.textContent=fmt(shown)+' FCFA';
+    if(k<1) totalRaf=requestAnimationFrame(step); else clearTimeout(totalSafety);
+  })(t0);
+}
+
+function render(animateRows){
+  var count=0,total=0;
+  cart.forEach(function(i){count+=i.qty;total+=i.price*i.qty;});
+  elCount.textContent=count;
+  elEmpty.hidden=cart.length>0;
+  elItems.textContent='';
+  cart.forEach(function(it,idx){
+    var row=document.createElement('div'); row.className='row';
+    var left=document.createElement('div');
+    var n=document.createElement('div'); n.className='n'; n.textContent=it.name;
+    var m=document.createElement('div'); m.className='m';
+    m.textContent=it.qty+' × '+fmt(it.price)+' FCFA';
+    left.appendChild(n); left.appendChild(m);
+    var rm=document.createElement('button'); rm.className='btn-remove'; rm.type='button';
+    rm.textContent='Retirer';
+    rm.setAttribute('aria-label','Retirer '+it.name+' du panier');
+    rm.addEventListener('click',function(){
+      if(RM){cart.splice(idx,1);render(false);return;}
+      row.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateX(26px)'}],
+        {duration:280,easing:'cubic-bezier(.65,0,.35,1)'}).onfinish=function(){
+        cart.splice(idx,1); render(false);
+      };
+    });
+    row.appendChild(left); row.appendChild(rm);
+    elItems.appendChild(row);
+    if(animateRows && !RM){
+      row.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],
+        {duration:420,easing:'cubic-bezier(.22,.61,.36,1)',delay:idx*45,fill:'backwards'});
+    }
+  });
+  animateTotal(total);
+}
+
+function fly(from,to){
+  if(!from||!to) return;
+  var a=from.getBoundingClientRect(), b=to.getBoundingClientRect();
+  var d=document.createElement('span'); d.className='droplet';
+  document.body.appendChild(d);
+  var x0=a.left+a.width/2, y0=a.top+a.height/2;
+  var dx=(b.left+b.width/2)-x0, dy=(b.top+b.height/2)-y0;
+  d.style.left=x0+'px'; d.style.top=y0+'px';
+  var anim=d.animate([
+    {transform:'translate(-50%,-50%) scale(.3)',opacity:0},
+    {transform:'translate(-50%,-50%) scale(1)',opacity:1,offset:.16},
+    {transform:'translate(calc(-50% + '+(dx*0.5)+'px),calc(-50% + '+(dy*0.5-95)+'px)) scale(.92)',opacity:1,offset:.62},
+    {transform:'translate(calc(-50% + '+dx+'px),calc(-50% + '+dy+'px)) scale(.2)',opacity:0}
+  ],{duration:780,easing:'cubic-bezier(.4,0,.2,1)'});
+  anim.onfinish=function(){d.remove();};
+}
+
+/* un seul comportement d'ajout, pour les cartes produits et pour les tuiles de la collection */
+$$('.btn-add,.cp-add').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var name=btn.getAttribute('data-name'), price=Number(btn.getAttribute('data-price'));
+    var ex=null;
+    cart.forEach(function(i){if(i.name===name)ex=i;});
+    if(ex){ex.qty++;} else {cart.push({name:name,price:price,qty:1});}
+    render(true);
+    btn.classList.add('added');
+    clearTimeout(btn._t);
+    btn._t=setTimeout(function(){btn.classList.remove('added');},1500);
+    elCount.classList.remove('pop'); void elCount.offsetWidth; elCount.classList.add('pop');
+    var src=btn.closest('.card'), from=null;
+    if(src) from=src.querySelector('.card-img');
+    else { src=btn.closest('.cp'); if(src) from=src.querySelector('img'); }
+    if(!RM && from) fly(from, elCount);
+  });
+});
+
+function say(txt){
+  elMsg.textContent=txt;
+  elMsg.classList.add('show');
+  clearTimeout(elMsg._t);
+  elMsg._t=setTimeout(function(){elMsg.classList.remove('show');},4200);
+}
+
+$('#btn-whatsapp').addEventListener('click',function(){
+  if(cart.length===0){
+    say('Le panier est vide. Ajoutez au moins un parfum avant de valider.');
+    document.getElementById('parfums').scrollIntoView({behavior:RM?'auto':'smooth',block:'start'});
+    return;
+  }
+  var total=0, message='Bonjour, je souhaite passer une commande de parfums Maison Riwaha Ndakaru :\n\n';
+  cart.forEach(function(it){
+    total+=it.price*it.qty;
+    message+='- '+it.qty+' x '+it.name+' ('+fmt(it.price)+' FCFA)\n';
+  });
+  message+='\nTotal estimé : '+fmt(total)+' FCFA';
+  message+='\nZone de livraison : ';
+  message+='\nNom : ';
+  message+='\nNuméro de téléphone : ';
+  message+='\n\nMode de paiement souhaité : Orange Money / Wave / Autre';
+  window.open(waLink(message),'_blank','noopener');
+});
+
+render(false);
+
+/* ---------- 7. Le rituel : appuyer et garder ---------- */
+var rite=$('#rite'), holdBtn=$('#hold');
+var rp=0, holding=false, hraf=0, hlast=0, riteDone=false, riteDoneByUser=false;
+function setP(v){rp=v; if(rite) rite.style.setProperty('--p',v.toFixed(4));}
+function tick(t){
+  if(riteDone){setP(1);hraf=0;return;}
+  var dt=Math.min(64,t-hlast)/1000; hlast=t;
+  rp += holding ? dt/2.3 : -dt/0.85;
+  rp=clamp(rp,0,1); setP(rp);
+  if(rp>=1){riteDone=true;riteDoneByUser=true;rite.classList.add('is-complete');hraf=0;return;}
+  if((holding&&rp<1)||(!holding&&rp>0)) hraf=requestAnimationFrame(tick);
+  else hraf=0;
+}
+function holdStart(e){
+  if(riteDone||!rite) return;
+  if(e&&e.preventDefault) e.preventDefault();
+  holding=true; holdBtn.classList.add('holding');
+  if(!hraf){hlast=performance.now();hraf=requestAnimationFrame(tick);}
+}
+function holdStop(){
+  if(!holding) return;
+  holding=false; holdBtn.classList.remove('holding');
+  if(!hraf&&rp>0){hlast=performance.now();hraf=requestAnimationFrame(tick);}
+}
+if(rite&&holdBtn){
+  holdBtn.addEventListener('pointerdown',holdStart);
+  window.addEventListener('pointerup',holdStop);
+  window.addEventListener('pointercancel',holdStop);
+  holdBtn.addEventListener('keydown',function(e){
+    if(e.key===' '||e.key==='Enter'||e.key==='Spacebar'){e.preventDefault();holdStart(e);}
+  });
+  holdBtn.addEventListener('keyup',function(e){
+    if(e.key===' '||e.key==='Enter'||e.key==='Spacebar') holdStop();
+  });
+  setP(0);
+  if(RM){riteDone=true;setP(1);rite.classList.add('is-complete');}
+}
+
+/* ---------- 8. Compteurs de prix ----------
+   Le vrai chiffre est déjà dans le HTML. On ne le remet à zéro qu'au moment
+   d'animer, et un filet de sécurité réaffirme la valeur finale. Comme ça un
+   prix faux ne peut jamais rester affiché, même sans JS ou sans animation. */
+$$('[data-count]').forEach(function(el){
+  var to=Number(el.getAttribute('data-count'));
+  var obs=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      obs.disconnect();
+      if(RM){el.textContent=fmt(to);return;}
+      var d=1100;
+      var safety=setTimeout(function(){el.textContent=fmt(to);}, d+250);
+      var t0=performance.now();
+      (function s(t){
+        var k=clamp((t-t0)/d,0,1), q=1-Math.pow(1-k,3);
+        el.textContent=fmt(Math.round(to*q));
+        if(k<1) requestAnimationFrame(s); else clearTimeout(safety);
+      })(t0);
+    });
+  },{threshold:.4});
+  obs.observe(el);
+});
+
+/* ---------- 9. Mouvement réduit, en direct et dans les deux sens ---------- */
+function pinToFinalStates(){
+  RM=true; root.classList.add('rm');
+  $$('.rv,.stag').forEach(function(el){el.classList.add('in');el.classList.add('done');});
+  hero.classList.add('lit');
+  if(visual){visual.style.transform='none';lastPar=-1;}
+  if(TLEN){tpath.style.strokeDashoffset='0';tdrop.style.opacity='0';}
+  bar.style.transform='scaleX(1)';
+  $$('[data-count]').forEach(function(el){el.textContent=fmt(Number(el.getAttribute('data-count')));});
+  if(rite){riteDone=true;setP(1);rite.classList.add('is-complete');}
+  cancelAnimationFrame(hraf); hraf=0;
+  cancelAnimationFrame(totalRaf);
+  elTotal.textContent=fmt(cart.reduce(function(s,i){return s+i.price*i.qty;},0))+' FCFA';
+}
+function releaseFinalStates(){
+  RM=false; root.classList.remove('rm');
+  if(rite&&!riteDoneByUser){riteDone=false;setP(0);rite.classList.remove('is-complete');}
+  lastP=-1; lastPar=-1; target=cur=window.scrollY; write(cur);
+}
+if(mqRM.addEventListener){
+  mqRM.addEventListener('change',function(e){e.matches?pinToFinalStates():releaseFinalStates();});
+}else if(mqRM.addListener){
+  mqRM.addListener(function(e){e.matches?pinToFinalStates():releaseFinalStates();});
+}
+if(RM) pinToFinalStates();
+})();
+</script>
+
+</body>
+</html>
