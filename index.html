@@ -21,6 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Karla:wght@400;700&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ==================== TOKENS ==================== */
 :root{
@@ -247,6 +248,17 @@ h1{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,5.9vw,4.4re
   transition:color .4s var(--e1),border-color .4s var(--e1),background-color .4s var(--e1),transform .4s var(--e1)}
 .chip:hover{color:var(--sand);border-color:var(--gold);transform:translateY(-2px)}
 .chip.is-on{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:700}
+.catalog-tools{display:grid;grid-template-columns:minmax(0,1fr) minmax(210px,280px);gap:12px;align-items:end;margin:-10px 0 12px}
+.catalog-search{position:relative;display:flex;align-items:center;min-height:48px;border:1px solid var(--line-strong);border-radius:14px;background:rgba(20,16,9,.52);transition:border-color .35s var(--e1),box-shadow .35s var(--e1)}
+.catalog-search:focus-within{border-color:var(--gold);box-shadow:0 0 0 3px rgba(224,183,107,.12)}
+.catalog-search svg{flex:none;width:18px;height:18px;margin-left:16px;color:var(--gold)}
+.catalog-search input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--sand);padding:12px 16px 12px 11px;font:inherit}
+.catalog-search input::placeholder{color:var(--sand-mute);opacity:1}
+.catalog-sort{display:flex;align-items:center;gap:9px;min-height:48px;border:1px solid var(--line-strong);border-radius:14px;background:rgba(20,16,9,.52);padding:0 12px 0 15px;color:var(--sand-dim);font-size:.78rem;white-space:nowrap;transition:border-color .35s var(--e1)}
+.catalog-sort:focus-within{border-color:var(--gold)}
+.catalog-sort select{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--sand);padding:12px 0;font:inherit;font-size:.86rem;cursor:pointer}
+.catalog-sort option{background:var(--ink-2);color:var(--sand)}
+.results-count{min-height:1.5em;margin:0 0 28px;color:var(--sand-mute);font-family:var(--mono);font-size:.72rem;letter-spacing:.06em}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:22px}
 .card{position:relative;display:flex;flex-direction:column;border-radius:20px;border:1px solid var(--line);overflow:hidden;
   background:linear-gradient(160deg,var(--ink-3),var(--ink-2) 55%,var(--ink));
@@ -484,8 +496,33 @@ footer a{color:var(--gold)}
   .nav-links{display:none}
   .ed-media{aspect-ratio:4/3}
 }
+@media (max-width:820px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .card-body{padding:15px 16px 17px}
+}
+@media (max-width:620px){
+  :root{--pad:clamp(46px,15vw,64px)}
+  .container{width:min(1160px,100% - 28px)}
+  .navbar{gap:10px;padding:14px 0}
+  .logo{gap:5px;font-size:.96rem;letter-spacing:.1em}
+  .cart-link{gap:6px;padding:7px 10px;font-size:.76rem}
+  .cart-count{min-width:20px;height:20px;padding:0 5px}
+  .catalog-tools{grid-template-columns:1fr;gap:10px;margin-top:-14px}
+  .catalog-sort{min-height:46px}
+  .results-count{margin-bottom:22px}
+  .filters{flex-wrap:nowrap;overflow-x:auto;margin:28px -14px 28px;padding:2px 14px 8px;scrollbar-width:thin}
+  .chip{flex:none}
+  .grid{grid-template-columns:1fr;gap:16px}
+  .card-img{aspect-ratio:5/4}
+  .card-body{padding:16px 17px 18px}
+  .btn-add{min-height:46px}
+  .hero-cta{display:grid;grid-template-columns:1fr;gap:10px}
+  .hero-cta .btn{width:100%}
+  .pf{padding-right:14px;padding-left:14px}
+  .pf-fiche{gap:8px;padding:12px}
+  .pf-wa{padding:8px 10px;font-size:12px}
+}
 @media (max-width:520px){
-  .grid{grid-template-columns:1fr}
   .cp-wall{grid-template-columns:repeat(2,1fr);gap:10px}
   .cp-name{font-size:.58rem;right:34px}
   .cue{display:none}
@@ -501,6 +538,76 @@ footer a{color:var(--gold)}
 html.rm{scroll-behavior:auto}
 html.rm *,html.rm *::before,html.rm *::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
   transition-duration:.001ms!important;transition-delay:0s!important}
+
+/* ==================== PARFUMS À DÉCOUVRIR ==================== */
+.pf{
+  --cream:#f6f0e6;--beige:#e9ddcb;--ink:#1b1712;--muted:#7a6d5c;--white:#fffcf7;
+  --display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --ui:"Jost",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --pf-delay:4500ms;--d:1;
+  background:linear-gradient(180deg,var(--cream),var(--beige) 160%);
+  color:var(--ink);font-family:var(--ui);padding:clamp(40px,8vw,96px) 16px;
+}
+.pf *{box-sizing:border-box}
+.pf-wrap{max-width:1180px;margin:0 auto}
+.pf-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:clamp(20px,4vw,36px)}
+.pf-head h2{margin:0;max-width:12ch;font-family:var(--display);font-size:clamp(34px,7vw,64px);font-weight:500;line-height:1.02;letter-spacing:-.01em}
+.pf-pill{display:inline-flex;align-items:center;gap:10px;border-radius:999px;background:#000;color:#fff;padding:14px 24px;font-size:15px;font-weight:500;text-decoration:none;transition:transform .25s ease,background .25s ease}
+.pf-pill span{display:inline-block;transition:transform .25s ease}
+.pf-pill:hover{background:#2a2520;transform:translateY(-2px)}
+.pf-pill:hover span{transform:translate(2px,-2px)}
+.pf-card{position:relative;container-type:inline-size;width:100%;max-height:84svh;aspect-ratio:4/5.3;overflow:hidden;border-radius:28px;background:var(--beige);box-shadow:0 30px 60px -30px rgba(60,40,20,.35)}
+.pf-stage{position:absolute;inset:0;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.pf-slide{position:absolute;inset:0;visibility:hidden;background:var(--bg,#f1ddd6);opacity:0;transform:translateX(calc(var(--d) * 7%)) scale(.96);transition:opacity .7s ease,transform .9s cubic-bezier(.22,.8,.24,1),visibility 0s .9s}
+.pf-slide.is-active{visibility:visible;opacity:1;transform:none;transition-delay:0s}
+.pf-slide.is-leaving{opacity:0;transform:translateX(calc(var(--d) * -7%)) scale(1.03)}
+.pf-slide.pf-noanim{transition:none!important}
+.pf-wm{position:absolute;inset:0 0 18%;display:grid;place-items:center;overflow:hidden;color:var(--ink);opacity:.07;pointer-events:none;white-space:nowrap;font-family:var(--display);font-size:clamp(48px,17vw,190px);font-size:clamp(48px,17cqw,190px);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.pf-hit{position:absolute;z-index:1;inset:0}
+.pf-bottle{position:absolute;inset:9% 0 27%;display:grid;place-items:center;pointer-events:none}
+.pf-bottle img,.pf-bottle svg{width:auto;height:auto;max-width:68%;max-height:100%;object-fit:contain;filter:drop-shadow(0 26px 22px rgba(50,30,10,.2));transition:transform .7s cubic-bezier(.22,.8,.24,1)}
+.pf-bottle svg{height:100%;color:rgba(27,23,18,.55)}
+@media (hover:hover){.pf-slide:hover .pf-bottle>*{transform:scale(1.05)}}
+.pf-fiche{position:absolute;z-index:2;right:12px;bottom:12px;left:12px;display:flex;align-items:center;gap:12px;border-radius:22px;background:rgba(255,252,247,.86);padding:14px 14px 14px 20px;box-shadow:0 12px 30px -14px rgba(60,40,20,.3);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.pf-meta{min-width:0;flex:1}
+.pf-brand{display:block;color:var(--muted);font-size:13px}
+.pf-name{display:block;margin:2px 0 4px;overflow-wrap:anywhere;font-family:var(--display);font-size:clamp(22px,5.5vw,28px);font-weight:600;line-height:1.1}
+.pf-price{font-size:15px;font-weight:500}
+.pf-wa{border:1px solid rgba(27,23,18,.2);border-radius:999px;color:var(--ink);padding:9px 14px;font-size:13px;text-decoration:none;white-space:nowrap;transition:background .25s}
+.pf-wa:hover{background:rgba(27,23,18,.07)}
+.pf-go{display:grid;flex:none;width:46px;height:46px;place-items:center;border-radius:50%;background:#000;color:#fff;font-size:18px;text-decoration:none;transition:transform .25s ease}
+.pf-go:hover{transform:scale(1.08) rotate(-8deg)}
+.pf-badge{position:absolute;z-index:2;top:14px;right:14px;display:grid;width:84px;height:84px;place-items:center;border-radius:50%;background:var(--white);box-shadow:0 8px 20px -10px rgba(60,40,20,.35);pointer-events:none}
+.pf-badge svg{position:absolute;inset:4px;width:calc(100% - 8px);height:calc(100% - 8px);animation:pf-spin 26s linear infinite}
+.pf-badge text{fill:var(--ink);font-family:var(--ui);font-size:8.4px;text-transform:uppercase}
+.pf-badge b{font-size:16px;font-weight:400}
+.pf-nav{position:absolute;z-index:3;top:42%;display:grid;width:42px;height:42px;place-items:center;border:0;border-radius:50%;background:rgba(255,252,247,.85);color:var(--ink);cursor:pointer;font-size:18px;box-shadow:0 8px 20px -10px rgba(60,40,20,.4);transition:transform .25s ease,background .25s}
+.pf-nav:hover{background:#fff;transform:scale(1.1)}
+.pf-prev{left:12px}.pf-next{right:12px}
+.pf-bar{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:20px}
+.pf-dots{display:flex;gap:8px}
+.pf-dot{position:relative;width:8px;height:8px;overflow:hidden;border:0;border-radius:999px;background:rgba(27,23,18,.2);padding:0;cursor:pointer;transition:width .45s cubic-bezier(.22,.8,.24,1)}
+.pf-dot.is-on{width:42px}
+.pf-dot i{position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left}
+.pf-dot.is-on i{animation:pf-fill var(--pf-delay) linear forwards}
+.pf.is-paused .pf-dot.is-on i{animation-play-state:paused}
+.pf-pause{width:34px;height:34px;border:1px solid rgba(27,23,18,.25);border-radius:50%;background:transparent;color:var(--ink);cursor:pointer;font-size:11px}
+.pf-pause:hover{background:rgba(27,23,18,.07)}
+.pf a:focus-visible,.pf button:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.pf-js .pf-head,.pf-js .pf-card,.pf-js .pf-bar{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .9s cubic-bezier(.22,.8,.24,1)}
+.pf-js .pf-card{transition-delay:.12s}.pf-js .pf-bar{transition-delay:.24s}
+.pf-js.is-in .pf-head,.pf-js.is-in .pf-card,.pf-js.is-in .pf-bar{opacity:1;transform:none}
+@keyframes pf-fill{to{transform:scaleX(1)}}
+@keyframes pf-spin{to{transform:rotate(360deg)}}
+@media (min-width:900px){
+  .pf-card{max-height:none;aspect-ratio:16/8.2}.pf-bottle{inset:6% 0 8%}.pf-bottle img,.pf-bottle svg{max-width:40%}
+  .pf-fiche{right:auto;bottom:24px;left:50%;width:min(540px,calc(100% - 48px));transform:translateX(-50%)}
+  .pf-badge{top:24px;right:24px;width:108px;height:108px}.pf-nav{top:50%;width:48px;height:48px}.pf-prev{left:24px}.pf-next{right:24px}
+}
+@media (prefers-reduced-motion:reduce){
+  .pf *,.pf *::before,.pf *::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .pf-js .pf-head,.pf-js .pf-card,.pf-js .pf-bar{opacity:1;transform:none}.pf-pause{display:none}.pf-dot.is-on i{transform:scaleX(1)}
+}
 </style>
 <noscript><style>
 /* Sans JavaScript, aucune animation ne peut jouer : on montre tout tout de suite. */
@@ -596,6 +703,217 @@ html.rm *,html.rm *::before,html.rm *::after{animation-duration:.001ms!important
     </div>
   </section>
 
+  <!-- ================= PARFUMS À DÉCOUVRIR ================= -->
+  <section class="pf" id="parfums-decouvrir" aria-labelledby="pf-title"
+           data-catalogue="#parfums"
+           data-whatsapp="221710110894"
+           data-badge="Découvertes olfactives • Sélection premium • "
+           data-delay="4500">
+    <div class="pf-wrap">
+      <div class="pf-head">
+        <h2 id="pf-title">Nos parfums à découvrir</h2>
+        <a class="pf-pill" href="#parfums" data-pf-catalogue>Voir tous les parfums <span aria-hidden="true">↗</span></a>
+      </div>
+
+      <div role="region" aria-roledescription="carrousel" aria-label="Parfums à découvrir">
+        <div class="pf-card" data-card>
+          <div class="pf-stage" data-stage aria-live="off"></div>
+          <button class="pf-nav pf-prev" type="button" aria-label="Parfum précédent" data-prev>←</button>
+          <button class="pf-nav pf-next" type="button" aria-label="Parfum suivant" data-next>→</button>
+          <div class="pf-badge" aria-hidden="true">
+            <svg viewBox="0 0 100 100"><defs><path id="pf-circ" d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0"/></defs><text><textPath href="#pf-circ" textLength="228" lengthAdjust="spacing" data-badge-text></textPath></text></svg>
+            <b>✦</b>
+          </div>
+        </div>
+        <div class="pf-bar">
+          <div class="pf-dots" data-dots></div>
+          <button class="pf-pause" type="button" aria-pressed="false" aria-label="Mettre le défilement en pause" data-pause>❚❚</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="application/json" id="pf-data">
+      [
+        {"brand":"Maison Riwaha","name":"Reef 33","price":35000,"image":"assets/img/Reef 33.jpg","url":"#parfums","bg":"#eadccd"},
+        {"brand":"Maison Riwaha","name":"Vanilla Voyage","price":30000,"image":"assets/img/Vanilla voyage.jpg","url":"#parfums","bg":"#e8dfcf"},
+        {"brand":"Maison Riwaha","name":"Khamrah","price":18000,"image":"assets/img/khamrah.jpg","url":"#parfums","bg":"#dfd6c7"},
+        {"brand":"Maison Riwaha","name":"Oud Maracuja","price":20000,"image":"assets/img/Oud maracuja.jpg","url":"#parfums","bg":"#e7d9ce"}
+      ]
+    </script>
+  </section>
+
+  <script>
+  (function(){
+    'use strict';
+    var PASTELS=['#f1ddd6','#dce4da','#e3dceb','#f2e6c9','#d9e4ea'];
+    var escapeHtml=function(value){
+      return String(value==null?'':value).replace(/[&<>"']/g,function(char){
+        return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char];
+      });
+    };
+    var formatPrice=function(value){
+      return new Intl.NumberFormat('fr-FR').format(value).replace(/[\u202f\u00a0]/g,' ')+' FCFA';
+    };
+    var bottle='<svg viewBox="0 0 120 220" aria-hidden="true"><rect x="46" y="6" width="28" height="26" rx="5" fill="currentColor"/><rect x="52" y="32" width="16" height="14" fill="currentColor" opacity=".7"/><rect x="14" y="46" width="92" height="164" rx="18" fill="currentColor" opacity=".35"/><rect x="30" y="92" width="60" height="56" rx="6" fill="#fff" opacity=".55"/></svg>';
+
+    Array.prototype.forEach.call(document.querySelectorAll('.pf'),init);
+
+    function init(root){
+      var data=[];
+      var dataNode=root.querySelector('script[type="application/json"]');
+      try{data=JSON.parse(dataNode.textContent);}catch(error){return;}
+      if(!Array.isArray(data)||!data.length)return;
+
+      root.classList.add('pf-js');
+      var delay=Number(root.getAttribute('data-delay'))||4500;
+      root.style.setProperty('--pf-delay',delay+'ms');
+      var wa=(root.getAttribute('data-whatsapp')||'').replace(/\D/g,'');
+      var stage=root.querySelector('[data-stage]');
+      var dotsBox=root.querySelector('[data-dots]');
+      var card=root.querySelector('[data-card]');
+      var pauseButton=root.querySelector('[data-pause]');
+      var catalogue=root.querySelector('[data-pf-catalogue]');
+      var badgeText=root.querySelector('[data-badge-text]');
+      if(root.getAttribute('data-catalogue'))catalogue.setAttribute('href',root.getAttribute('data-catalogue'));
+      badgeText.textContent=(root.getAttribute('data-badge')||'').toUpperCase();
+
+      stage.innerHTML=data.map(function(product,index){
+        var background=product.bg||PASTELS[index%PASTELS.length];
+        var name=(product.brand||'')+' '+(product.name||'');
+        var image=product.image
+          ? '<img src="'+escapeHtml(product.image)+'" alt="'+escapeHtml(name)+'" width="600" height="800" decoding="async" '+(index?'loading="lazy"':'fetchpriority="high"')+'>'
+          : bottle;
+        var whatsApp=wa
+          ? '<a class="pf-wa" href="https://wa.me/'+wa+'?text='+encodeURIComponent('Bonjour, je souhaite commander : '+name)+'" target="_blank" rel="noopener">Commander</a>'
+          : '';
+        return '<article class="pf-slide" style="--bg:'+escapeHtml(background)+'" role="group" aria-roledescription="diapositive" aria-label="'+(index+1)+' sur '+data.length+'">'
+          +'<div class="pf-wm" aria-hidden="true">'+escapeHtml(product.brand)+'</div>'
+          +'<a class="pf-hit" href="'+escapeHtml(product.url||'#parfums')+'" aria-label="Voir '+escapeHtml(name)+'" draggable="false"></a>'
+          +'<div class="pf-bottle">'+image+'</div>'
+          +'<div class="pf-fiche"><div class="pf-meta"><span class="pf-brand">'+escapeHtml(product.brand)+'</span><span class="pf-name">'+escapeHtml(product.name)+'</span><span class="pf-price">'+(product.price?formatPrice(product.price):'')+'</span></div>'+whatsApp+'<a class="pf-go" href="'+escapeHtml(product.url||'#parfums')+'" aria-label="Voir '+escapeHtml(product.name)+'">↗</a></div>'
+          +'</article>';
+      }).join('');
+      var slides=Array.prototype.slice.call(stage.children);
+      dotsBox.innerHTML=data.map(function(product,index){
+        return '<button class="pf-dot" type="button" aria-label="Parfum '+(index+1)+' sur '+data.length+' : '+escapeHtml(product.name)+'"><i></i></button>';
+      }).join('');
+      var dots=Array.prototype.slice.call(dotsBox.children);
+      var previous=root.querySelector('[data-prev]');
+      var next=root.querySelector('[data-next]');
+
+      if(data.length<2){
+        [previous,next,root.querySelector('.pf-bar')].forEach(function(element){element.hidden=true;});
+      }
+
+      var state={hover:0,focus:0,drag:0,hidden:document.hidden?1:0,off:1,user:0};
+      var sync=function(){
+        var paused=Object.keys(state).some(function(key){return state[key];});
+        root.classList.toggle('is-paused',paused);
+        stage.setAttribute('aria-live',state.user||state.focus?'polite':'off');
+      };
+      var current=0;
+      var activate=function(index){
+        slides.forEach(function(slide,slideIndex){
+          var inactive=slideIndex!==index;
+          slide.inert=inactive;
+          slide.setAttribute('aria-hidden',inactive?'true':'false');
+        });
+        dots.forEach(function(dot,dotIndex){
+          var active=dotIndex===index;
+          dot.classList.toggle('is-on',active);
+          if(active)dot.setAttribute('aria-current','true');else dot.removeAttribute('aria-current');
+        });
+      };
+      var show=function(index,direction){
+        index=(index+data.length)%data.length;
+        if(index===current)return;
+        direction=direction||(index>current?1:-1);
+        root.style.setProperty('--d',direction);
+        var oldSlide=slides[current];
+        var newSlide=slides[index];
+        newSlide.classList.add('pf-noanim');
+        newSlide.classList.remove('is-leaving');
+        void newSlide.offsetWidth;
+        newSlide.classList.remove('pf-noanim');
+        oldSlide.classList.remove('is-active');
+        oldSlide.classList.add('is-leaving');
+        newSlide.classList.add('is-active');
+        current=index;
+        activate(index);
+      };
+      slides[0].classList.add('is-active');
+      activate(0);
+
+      previous.addEventListener('click',function(){show(current-1,-1);});
+      next.addEventListener('click',function(){show(current+1,1);});
+      dots.forEach(function(dot,index){dot.addEventListener('click',function(){show(index);});});
+      dotsBox.addEventListener('animationend',function(event){
+        if(event.animationName==='pf-fill')show(current+1,1);
+      });
+      pauseButton.addEventListener('click',function(){
+        state.user=state.user?0:1;
+        sync();
+        pauseButton.setAttribute('aria-pressed',state.user?'true':'false');
+        pauseButton.setAttribute('aria-label',state.user?'Relancer le défilement':'Mettre le défilement en pause');
+        pauseButton.textContent=state.user?'▶':'❚❚';
+      });
+      card.addEventListener('pointerenter',function(event){if(event.pointerType==='mouse'){state.hover=1;sync();}});
+      card.addEventListener('pointerleave',function(){state.hover=0;sync();});
+      root.addEventListener('focusin',function(){state.focus=1;sync();});
+      root.addEventListener('focusout',function(){state.focus=0;sync();});
+      document.addEventListener('visibilitychange',function(){state.hidden=document.hidden?1:0;sync();});
+      root.addEventListener('keydown',function(event){
+        if(event.key==='ArrowRight')show(current+1,1);
+        if(event.key==='ArrowLeft')show(current-1,-1);
+      });
+
+      var startX=0,deltaX=0,startTime=0,pressed=false,moved=false;
+      stage.addEventListener('pointerdown',function(event){
+        if(data.length<2)return;
+        pressed=true;moved=false;startX=event.clientX;deltaX=0;startTime=Date.now();
+      });
+      stage.addEventListener('pointermove',function(event){
+        if(!pressed)return;
+        deltaX=event.clientX-startX;
+        if(!moved&&Math.abs(deltaX)>8){
+          moved=true;state.drag=1;sync();stage.setPointerCapture(event.pointerId);
+        }
+        if(moved){
+          slides[current].style.transition='none';
+          slides[current].style.transform='translateX('+deltaX+'px)';
+        }
+      });
+      var finishDrag=function(){
+        if(!pressed)return;
+        pressed=false;
+        slides[current].style.transition='';
+        slides[current].style.transform='';
+        var fast=Math.abs(deltaX)/Math.max(Date.now()-startTime,1)>.5;
+        if(moved&&(Math.abs(deltaX)>50||fast))show(current+(deltaX<0?1:-1),deltaX<0?1:-1);
+        state.drag=0;sync();
+      };
+      stage.addEventListener('pointerup',finishDrag);
+      stage.addEventListener('pointercancel',finishDrag);
+      stage.addEventListener('click',function(event){
+        if(moved){event.preventDefault();event.stopPropagation();moved=false;}
+      },true);
+
+      if('IntersectionObserver' in window){
+        var observer=new IntersectionObserver(function(entries){
+          var entry=entries[0];
+          state.off=entry.isIntersecting?0:1;
+          if(entry.isIntersecting)root.classList.add('is-in');
+          sync();
+        },{threshold:.25});
+        observer.observe(root);
+      }else{
+        state.off=0;root.classList.add('is-in');
+      }
+      sync();
+    }
+  })();
+  </script>
+
   <!-- ================= PARFUMS ================= -->
   <section id="parfums">
     <div class="container">
@@ -615,6 +933,23 @@ html.rm *,html.rm *::before,html.rm *::after{animation-duration:.001ms!important
         <button class="chip" data-f="oriental" aria-pressed="false">Oriental</button>
         <button class="chip" data-f="huile" aria-pressed="false">Huiles et maison</button>
       </div>
+
+      <div class="catalog-tools rv" role="search" aria-label="Rechercher et trier les parfums">
+        <label class="catalog-search" for="product-search">
+          <span class="sr-only">Rechercher un parfum</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><circle cx="10.8" cy="10.8" r="6.3" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <input id="product-search" type="search" placeholder="Rechercher un parfum, une note, une marque…" autocomplete="off" enterkeyhint="search">
+        </label>
+        <label class="catalog-sort" for="product-sort">
+          <span>Trier par</span>
+          <select id="product-sort">
+            <option value="default">Sélection</option>
+            <option value="price-asc">Prix croissant</option>
+            <option value="price-desc">Prix décroissant</option>
+          </select>
+        </label>
+      </div>
+      <p class="results-count" id="results-count" role="status" aria-live="polite"></p>
 
       <div class="grid stag" id="grid">
 
@@ -741,7 +1076,7 @@ html.rm *,html.rm *::before,html.rm *::after{animation-duration:.001ms!important
             <p>Moderne, propre et accessible. Pour le bureau, les sorties entre amis et le quotidien.</p>
             <div class="price">50 ml · 50 000 FCFA</div>
             <div class="tags"><span class="tag">Moderne</span><span class="tag">Homme</span><span class="tag">Quotidien</span></div>
-            <button class="btn-add" data-name="Hugo Boss" data-price="15000">
+            <button class="btn-add" data-name="Hugo Boss" data-price="50000">
               <span class="lbl">Ajouter au panier</span>
               <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
             </button>
@@ -860,7 +1195,7 @@ html.rm *,html.rm *::before,html.rm *::after{animation-duration:.001ms!important
             <p>Vanille chaude et réconfortante, un voyage sensoriel tout en douceur.</p>
             <div class="price">50 ml · 30 000 FCFA</div>
             <div class="tags"><span class="tag">Vanille</span><span class="tag">Mixte</span><span class="tag">Doux</span></div>
-            <button class="btn-add" data-name="Vanilla Voyage" data-price="50000">
+            <button class="btn-add" data-name="Vanilla Voyage" data-price="30000">
               <span class="lbl">Ajouter au panier</span>
               <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
             </button>
@@ -927,13 +1262,13 @@ html.rm *,html.rm *::before,html.rm *::after{animation-duration:.001ms!important
         </article>
 
         <article class="card" data-cat="mixte">
-          <div class="card-img"><img src="assets/img/callisto-iris.jpg" alt="Callisto Iris" loading="lazy" decoding="async"><span class="sheen" aria-hidden="true"></span></div>
+          <div class="card-img"><img src="assets/img/Callisto Iris.jpg" alt="Callisto Iris" loading="lazy" decoding="async"><span class="sheen" aria-hidden="true"></span></div>
           <div class="card-body">
             <h3>Callisto Iris</h3>
             <p>Iris poudré et élégant, une fragrance délicate et distinguée.</p>
             <div class="price">100 ml · 95 000 FCFA</div>
             <div class="tags"><span class="tag">Iris</span><span class="tag">Mixte</span><span class="tag">Élégant</span></div>
-            <button class="btn-add" data-name="Callisto Iris" data-price="90000">
+            <button class="btn-add" data-name="Callisto Iris" data-price="95000">
               <span class="lbl">Ajouter au panier</span>
               <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
             </button>
@@ -947,7 +1282,7 @@ html.rm *,html.rm *::before,html.rm *::after{animation-duration:.001ms!important
             <p>Notes chaudes et boisées rappelant le bourbon, pour un style affirmé.</p>
             <div class="price">100 ml · 20 000 FCFA</div>
             <div class="tags"><span class="tag">Boisé</span><span class="tag">Homme</span><span class="tag">Chaleureux</span></div>
-            <button class="btn-add" data-name="Asas Bourbon" data-price="50000">
+            <button class="btn-add" data-name="Asas Bourbon" data-price="20000">
               <span class="lbl">Ajouter au panier</span>
               <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
             </button>
@@ -973,9 +1308,9 @@ html.rm *,html.rm *::before,html.rm *::after{animation-duration:.001ms!important
           <div class="card-body">
             <h3>Liquid Brun</h3>
             <p>Gourmand et sombre, un profil intense qui ne passe pas inaperçu.</p>
-            <div class="price">100 ml · 90 000 FCFA</div>
+            <div class="price">100 ml · 30 000 FCFA</div>
             <div class="tags"><span class="tag">Gourmand</span><span class="tag">Homme</span><span class="tag">Intense</span></div>
-            <button class="btn-add" data-name="Liquid Brun" data-price="50000">
+            <button class="btn-add" data-name="Liquid Brun" data-price="30000">
               <span class="lbl">Ajouter au panier</span>
               <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
             </button>
@@ -989,7 +1324,7 @@ html.rm *,html.rm *::before,html.rm *::after{animation-duration:.001ms!important
             <p>Sophistiqué, avec un sillage propre et chic. Pour les amateurs de fragrances raffinées.</p>
             <div class="price">50 ml · 57 000 FCFA</div>
             <div class="tags"><span class="tag">Chic</span><span class="tag">Mixte</span><span class="tag">Raffiné</span></div>
-            <button class="btn-add" data-name="Prada Milano" data-price="22000">
+            <button class="btn-add" data-name="Prada Milano" data-price="57000">
               <span class="lbl">Ajouter au panier</span>
               <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
             </button>
@@ -1003,7 +1338,7 @@ html.rm *,html.rm *::before,html.rm *::after{animation-duration:.001ms!important
             <p>Fraîcheur intense et notes épicées. Un classique pour les fans de parfums masculins modernes.</p>
             <div class="price">50 ml · 45 000 FCFA</div>
             <div class="tags"><span class="tag">Best-seller</span><span class="tag">Homme</span><span class="tag">Intense</span></div>
-            <button class="btn-add" data-name="Sauvage Dior" data-price="23000">
+            <button class="btn-add" data-name="Sauvage Dior" data-price="45000">
               <span class="lbl">Ajouter au panier</span>
               <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
             </button>
@@ -1017,7 +1352,7 @@ html.rm *,html.rm *::before,html.rm *::after{animation-duration:.001ms!important
             <p>Élégant avec une touche gourmande. Pour les soirées et les occasions spéciales.</p>
             <div class="price">50 ml · 75 000 FCFA</div>
             <div class="tags"><span class="tag">Luxe</span><span class="tag">Mixte</span><span class="tag">Soirée</span></div>
-            <button class="btn-add" data-name="Valentino" data-price="21000">
+            <button class="btn-add" data-name="Valentino" data-price="75000">
               <span class="lbl">Ajouter au panier</span>
               <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
             </button>
@@ -1115,7 +1450,7 @@ html.rm *,html.rm *::before,html.rm *::after{animation-duration:.001ms!important
             <p>Huile concentrée, pour ceux qui aiment les parfums qui tiennent longtemps sur la peau.</p>
             <div class="price">12 ml · 18 000 FCFA</div>
             <div class="tags"><span class="tag">Huile</span><span class="tag">Concentrée</span><span class="tag">Longue tenue</span></div>
-            <button class="btn-add" data-name="Rifaqaat - Huile de parfum" data-price="12000">
+            <button class="btn-add" data-name="Rifaqaat - Huile de parfum" data-price="18000">
               <span class="lbl">Ajouter au panier</span>
               <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
             </button>
@@ -1129,7 +1464,7 @@ html.rm *,html.rm *::before,html.rm *::after{animation-duration:.001ms!important
             <p>Huile douce à appliquer par petites touches. Pour la prière, le travail ou la maison.</p>
             <div class="price">10 ml ·  2 000 FCFA</div>
             <div class="tags"><span class="tag">Huile</span><span class="tag">Mixte</span><span class="tag">Discrète</span></div>
-            <button class="btn-add" data-name="Huile de parfum concentree" data-price="8000">
+            <button class="btn-add" data-name="Huile de parfum concentree" data-price="2000">
               <span class="lbl">Ajouter au panier</span>
               <span class="ok" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Ajouté</span>
             </button>
@@ -1765,38 +2100,89 @@ window.addEventListener('resize',function(){
 },{passive:true});
 write(cur);
 
-/* ---------- 5. Filtres de la boutique ---------- */
-var chips=$$('.chip'), cards=$$('#grid .card');
-chips.forEach(function(c){
-  c.addEventListener('click',function(){
-    chips.forEach(function(x){
-      var on=(x===c);
-      x.classList.toggle('is-on',on);
-      x.setAttribute('aria-pressed',on?'true':'false');
+/* ---------- 5. Recherche, filtres et tri du catalogue ---------- */
+var grid=$('#grid'), chips=$$('.chip'), cards=$$('#grid .card'),
+    searchInput=$('#product-search'), sortSelect=$('#product-sort'), resultsCount=$('#results-count');
+var activeFilter='all', searchTerm='', sortMode='default';
+
+cards.forEach(function(card,index){card._catalogIndex=index;});
+
+function normalizeText(value){
+  return String(value||'').toLocaleLowerCase('fr-FR').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+}
+function getCardPrice(card){
+  var button=card.querySelector('.btn-add');
+  return Number(button&&button.getAttribute('data-price'))||0;
+}
+function cardMatchesFilter(card){
+  return activeFilter==='all'||(card.getAttribute('data-cat')||'').split(/\s+/).indexOf(activeFilter)>-1;
+}
+function cardMatchesSearch(card){
+  if(!searchTerm)return true;
+  if(!card._searchText)card._searchText=normalizeText(card.textContent+' '+(card.getAttribute('data-cat')||''));
+  return card._searchText.indexOf(searchTerm)>-1;
+}
+function orderCards(){
+  var ordered=cards.slice().sort(function(a,b){
+    if(sortMode==='price-asc')return getCardPrice(a)-getCardPrice(b)||a._catalogIndex-b._catalogIndex;
+    if(sortMode==='price-desc')return getCardPrice(b)-getCardPrice(a)||a._catalogIndex-b._catalogIndex;
+    return a._catalogIndex-b._catalogIndex;
+  });
+  ordered.forEach(function(card){grid.appendChild(card);});
+}
+function showCard(card,index){
+  var shouldAnimate=card.hidden||card.classList.contains('out');
+  clearTimeout(card._h);
+  card.hidden=false;
+  card.style.setProperty('--fd',RM?'0ms':(index*35+'ms'));
+  if(!shouldAnimate){card.classList.remove('out');return;}
+  if(RM){card.classList.remove('out');return;}
+  card.classList.add('out');
+  requestAnimationFrame(function(){card.classList.remove('out');});
+}
+function hideCard(card){
+  clearTimeout(card._h);
+  card.style.setProperty('--fd','0ms');
+  if(card.hidden)return;
+  card.classList.add('out');
+  if(RM){card.hidden=true;return;}
+  card._h=setTimeout(function(){card.hidden=true;},420);
+}
+function updateCatalogue(){
+  orderCards();
+  var visible=0;
+  cards.forEach(function(card){
+    if(cardMatchesFilter(card)&&cardMatchesSearch(card)){
+      showCard(card,visible);
+      visible++;
+    }else{
+      hideCard(card);
+    }
+  });
+  resultsCount.textContent=visible
+    ? visible+' parfum'+(visible>1?'s':'')+' affiché'+(visible>1?'s':'')
+    : 'Aucun parfum ne correspond à votre recherche.';
+}
+chips.forEach(function(chip){
+  chip.addEventListener('click',function(){
+    activeFilter=chip.getAttribute('data-f')||'all';
+    chips.forEach(function(item){
+      var selected=item===chip;
+      item.classList.toggle('is-on',selected);
+      item.setAttribute('aria-pressed',selected?'true':'false');
     });
-    var f=c.getAttribute('data-f'), vis=0;
-    cards.forEach(function(card){
-      var match=(f==='all')||(' '+card.getAttribute('data-cat')+' ').indexOf(' '+f+' ')>-1
-                 ||card.getAttribute('data-cat').split(' ').indexOf(f)>-1;
-      if(match){
-        var d=vis*35; vis++;
-        clearTimeout(card._h);
-        card.hidden=false;
-        card.style.setProperty('--fd',RM?'0ms':(d+'ms'));
-        requestAnimationFrame(function(){card.classList.remove('out');});
-        setTimeout(function(){card.classList.remove('out');},40);
-      }else{
-        card.style.setProperty('--fd','0ms');
-        card.classList.add('out');
-        if(RM){card.hidden=true;}
-        else{
-          clearTimeout(card._h);
-          card._h=setTimeout(function(){card.hidden=true;},420);
-        }
-      }
-    });
+    updateCatalogue();
   });
 });
+searchInput.addEventListener('input',function(){
+  searchTerm=normalizeText(searchInput.value).trim();
+  updateCatalogue();
+});
+sortSelect.addEventListener('change',function(){
+  sortMode=sortSelect.value;
+  updateCatalogue();
+});
+updateCatalogue();
 
 /* ---------- 6. Panier ---------- */
 var cart=[];
