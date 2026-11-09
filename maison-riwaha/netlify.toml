@@ -1,0 +1,12 @@
+# Réglages Netlify : site statique, pas de compilation.
+# Le dossier publié est la racine du dépôt GitHub.
+[build]
+  publish = "."
+  command = ""
+
+# Les fichiers du catalogue sont toujours revérifiés : un changement fait
+# dans l'espace admin apparaît dès la mise à jour du site.
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

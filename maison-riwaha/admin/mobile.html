@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#16110D">
+  <title>Gestion · Maison Riwaha</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <style>
+    /* Gestion rapide Maison Riwaha : pensée pour le téléphone */
+    :root {
+      --bg: #16110D; --surface: #1C1611; --card: #100C09; --line: rgba(226, 184, 106, 0.16);
+      --line-2: rgba(226, 184, 106, 0.32); --gold: #E2B86A; --gold-dark: #C99A4B; --ivory: #F3E9DA;
+      --text: #CFC3B2; --muted: #9C8F7E; --off: #D6785C; --ok: #9CC59A; --ink: #1A130D;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --serif: "EB Garamond", Garamond, Georgia, serif;
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; background: var(--bg); }
+    body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--text); font: 16px/1.45 var(--sans); }
+    button, input, select, textarea { font: inherit; color: inherit; }
+    button { cursor: pointer; }
+    [hidden] { display: none !important; }
+    a { color: var(--gold); }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+    .top {
+      position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 12px;
+      padding: calc(10px + env(safe-area-inset-top)) 16px 10px; background: rgba(22, 17, 13, 0.94);
+      -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
+    }
+    .brand { font-family: var(--serif); font-size: 20px; color: var(--ivory); letter-spacing: 0.06em; line-height: 1.1; }
+    .brand b { color: var(--gold); font-weight: 400; }
+    .brand small { display: block; font: 11px var(--sans); letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+    .top__links { margin-left: auto; display: flex; gap: 6px; }
+    .chip-link { display: inline-flex; align-items: center; min-height: 36px; padding: 0 12px; border: 1px solid var(--line-2); border-radius: 999px; background: none; color: var(--ivory); font-size: 13px; text-decoration: none; }
+
+    main { padding: 14px 16px 140px; max-width: 720px; margin: 0 auto; }
+    .panel { padding: 22px 18px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); }
+    .panel h1 { margin: 0 0 8px; font: 400 26px/1.2 var(--serif); color: var(--ivory); }
+    .panel p { margin: 0 0 14px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 20px; border: 1px solid var(--line-2); border-radius: 999px; background: none; color: var(--ivory); font-weight: 600; text-decoration: none; }
+    .btn--gold { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+    .btn--danger { border-color: rgba(214, 120, 92, 0.6); color: #F2C4B2; }
+    .btn--block { width: 100%; }
+    .btn:disabled { opacity: 0.5; cursor: default; }
+
+    .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 4px; border: 1px solid var(--line); border-radius: 14px; background: var(--card); }
+    .tabs button { min-height: 44px; border: 0; border-radius: 10px; background: none; color: var(--text); font-weight: 600; font-size: 15px; }
+    .tabs button[aria-selected="true"] { background: var(--gold); color: var(--ink); }
+    .search { display: block; width: 100%; height: 48px; margin-top: 12px; padding: 0 16px; border: 1px solid var(--line-2); border-radius: 12px; background: var(--card); font-size: 16px; }
+    .filters { display: flex; gap: 8px; margin: 10px 0 4px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+    .filters::-webkit-scrollbar { display: none; }
+    .filters button { flex: none; min-height: 38px; padding: 0 14px; border: 1px solid var(--line-2); border-radius: 999px; background: none; color: var(--text); font-size: 14px; }
+    .filters button[aria-pressed="true"] { border-color: var(--gold); background: rgba(226, 184, 106, 0.14); color: var(--ivory); }
+    .count { margin: 10px 2px; font-size: 13px; color: var(--muted); }
+
+    .list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    .item { display: flex; align-items: center; gap: 10px; padding: 10px; border: 1px solid var(--line); border-radius: 16px; background: var(--card); }
+    .item.is-off { border-color: rgba(214, 120, 92, 0.35); }
+    .item__main { flex: 1; min-width: 0; display: flex; align-items: center; gap: 12px; padding: 0; border: 0; background: none; text-align: left; }
+    .thumb { flex: none; width: 58px; height: 72px; border-radius: 10px; overflow: hidden; background: #241b13; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .item.is-off .thumb img { filter: grayscale(0.6) brightness(0.65); }
+    .item__txt { min-width: 0; display: grid; gap: 2px; }
+    .item__name { font: 400 19px/1.15 var(--serif); color: var(--ivory); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow-wrap: anywhere; }
+    .item__meta { font-size: 13px; color: var(--muted); }
+    .badge { justify-self: start; margin-top: 3px; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+    .badge.off { background: rgba(214, 120, 92, 0.18); color: #F2C4B2; }
+    .badge.low { background: rgba(226, 184, 106, 0.16); color: var(--gold); }
+    .badge.new { background: rgba(156, 197, 154, 0.16); color: var(--ok); }
+    .stepper { flex: none; display: flex; align-items: center; border: 1px solid var(--line-2); border-radius: 12px; overflow: hidden; }
+    .stepper button { width: 40px; height: 44px; border: 0; background: rgba(226, 184, 106, 0.06); color: var(--ivory); font-size: 22px; line-height: 1; }
+    .stepper button:active { background: rgba(226, 184, 106, 0.2); }
+    .stepper input { width: 44px; height: 44px; border: 0; border-inline: 1px solid var(--line); background: none; text-align: center; font-size: 17px; font-weight: 600; color: var(--ivory); -moz-appearance: textfield; }
+    .stepper input::-webkit-outer-spin-button, .stepper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .stepper input::placeholder { color: var(--muted); font-weight: 400; }
+    .empty { padding: 30px 10px; text-align: center; color: var(--muted); }
+
+    .fab { position: fixed; right: 16px; bottom: calc(18px + env(safe-area-inset-bottom)); z-index: 15; min-height: 54px; padding: 0 22px; border: 0; border-radius: 999px; background: var(--gold); color: var(--ink); font-weight: 700; font-size: 16px; box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.8); }
+    .savebar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; display: flex; align-items: center; gap: 10px;
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: #241B13; border-top: 1px solid var(--line-2);
+      box-shadow: 0 -12px 30px -12px rgba(0, 0, 0, 0.8);
+    }
+    .savebar__txt { flex: 1; font-size: 14px; color: var(--ivory); line-height: 1.3; }
+    .savebar__txt small { display: block; color: var(--muted); font-size: 12px; }
+    body.has-savebar .fab { bottom: calc(92px + env(safe-area-inset-bottom)); }
+
+    .toast { position: fixed; left: 16px; right: 16px; top: calc(70px + env(safe-area-inset-top)); z-index: 40; max-width: 560px; margin: 0 auto; padding: 14px 16px; border: 1px solid var(--line-2); border-radius: 14px; background: #2A2018; color: var(--ivory); font-size: 15px; box-shadow: 0 16px 40px -14px #000; opacity: 0; transform: translateY(-8px); transition: opacity .25s, transform .25s; pointer-events: none; }
+    .toast.is-on { opacity: 1; transform: none; }
+    .toast.is-error { border-color: rgba(214, 120, 92, 0.7); }
+
+    /* Fiche d'édition plein écran */
+    .sheet { position: fixed; inset: 0; z-index: 30; display: flex; flex-direction: column; background: var(--bg); }
+    .sheet__head { display: flex; align-items: center; gap: 10px; padding: calc(10px + env(safe-area-inset-top)) 16px 10px; border-bottom: 1px solid var(--line); }
+    .sheet__head h2 { flex: 1; margin: 0; font: 400 22px/1.2 var(--serif); color: var(--ivory); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .sheet__body { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 16px 16px 24px; }
+    .sheet__foot { display: flex; gap: 10px; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: #1A140F; }
+    .sheet__foot .btn { flex: 1; }
+    .icon-btn { width: 44px; height: 44px; border: 1px solid var(--line-2); border-radius: 50%; background: none; color: var(--ivory); font-size: 20px; }
+    .field { display: grid; gap: 6px; margin-bottom: 16px; }
+    .field > span { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; color: var(--ivory); }
+    .field small { color: var(--muted); font-size: 12.5px; }
+    .field input[type="text"], .field input[type="number"], .field select, .field textarea {
+      width: 100%; min-height: 48px; padding: 10px 14px; border: 1px solid var(--line-2); border-radius: 12px; background: var(--card); font-size: 16px; color: var(--ivory);
+    }
+    .field textarea { min-height: 96px; resize: vertical; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .checks { display: flex; flex-wrap: wrap; gap: 8px; }
+    .checks label, .switch { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border: 1px solid var(--line-2); border-radius: 999px; background: var(--card); font-size: 15px; }
+    .checks input, .switch input { width: 18px; height: 18px; accent-color: var(--gold); }
+    .photo { display: flex; gap: 14px; align-items: center; }
+    .photo__img { flex: none; width: 96px; height: 120px; border-radius: 12px; overflow: hidden; background: #241b13; display: grid; place-items: center; color: var(--muted); font-size: 12px; text-align: center; }
+    .photo__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo__btns { display: grid; gap: 8px; }
+    .photo__btns label { position: relative; overflow: hidden; }
+    .photo__btns input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .danger-zone { margin-top: 8px; padding-top: 16px; border-top: 1px solid var(--line); }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="brand">Maison <b>Riwaha</b><small>Gestion rapide</small></div>
+    <nav class="top__links">
+      <a class="chip-link" href="/" target="_blank" rel="noopener">Voir le site</a>
+      <button class="chip-link" type="button" data-logout hidden>Déconnexion</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Messages (chargement, configuration manquante, erreur) -->
+    <section class="panel" data-message>
+      <p>Chargement…</p>
+    </section>
+
+    <!-- Connexion -->
+    <section class="panel" data-login hidden>
+      <h1>Connexion</h1>
+      <p>Connectez-vous avec votre compte GitHub pour gérer les parfums, le stock et les photos depuis votre téléphone.</p>
+      <button class="btn btn--gold btn--block" type="button" data-do-login>Se connecter avec GitHub</button>
+      <p style="margin-top:14px"><small>Une fenêtre GitHub s'ouvre : acceptez, puis revenez ici.
+      Sur ordinateur, l'<a href="/admin/?complet">admin complet</a> permet aussi de modifier les avis, les réglages et les tarifs.</small></p>
+    </section>
+
+    <!-- Gestion -->
+    <section data-app hidden>
+      <div class="tabs" role="tablist" aria-label="Catalogue">
+        <button type="button" role="tab" data-tab="parfums" aria-selected="true">Parfums</button>
+        <button type="button" role="tab" data-tab="privee" aria-selected="false">Collection Privée</button>
+      </div>
+      <input class="search" type="search" placeholder="Rechercher un parfum…" aria-label="Rechercher" autocomplete="off" data-search>
+      <div class="filters" role="group" aria-label="Filtrer par stock" data-filters></div>
+      <p class="count" data-count aria-live="polite"></p>
+      <ul class="list" data-list></ul>
+      <p class="count" style="margin-top:18px">Stock vide (∞) = non suivi, toujours disponible. 0 = rupture de stock.<br>
+        <a href="/admin/?complet">Admin complet</a> (avis, réglages, tarifs), plus pratique sur ordinateur.</p>
+    </section>
+  </main>
+
+  <button class="fab" type="button" data-add hidden>+ Ajouter</button>
+
+  <div class="savebar" data-savebar hidden>
+    <div class="savebar__txt" data-savebar-txt></div>
+    <button class="btn" type="button" data-cancel>Annuler</button>
+    <button class="btn btn--gold" type="button" data-save>Enregistrer</button>
+  </div>
+
+  <div class="toast" data-toast role="status" aria-live="polite"></div>
+
+  <!-- Fiche d'édition -->
+  <div class="sheet" data-sheet role="dialog" aria-modal="true" aria-labelledby="sheet-title" hidden>
+    <div class="sheet__head">
+      <button class="icon-btn" type="button" data-sheet-close aria-label="Fermer sans modifier">×</button>
+      <h2 id="sheet-title" data-sheet-title></h2>
+    </div>
+    <form class="sheet__body" data-form novalidate></form>
+    <div class="sheet__foot">
+      <button class="btn" type="button" data-sheet-close>Annuler</button>
+      <button class="btn btn--gold" type="button" data-sheet-ok>Valider</button>
+    </div>
+  </div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- Outils ---------- */
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var fmt = function (n) { return new Intl.NumberFormat('fr-FR').format(Number(n) || 0).replace(/[  ]/g, ' '); };
+  var norm = function (s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
+  var slug = function (s) { return norm(s).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'photo'; };
+  var imgUrl = function (p) { return !p ? '' : /^(https?:)?\/\//.test(p) ? p : '/' + String(p).replace(/^\/+/, ''); };
+
+  /* Même format que l'admin complet (admin/index.html) */
+  var ENTETE = "/* Catalogue Maison Riwaha : fichier modifié depuis l'espace admin (/admin). */\n" +
+               "window.RIWAHA_DATA = Object.assign(window.RIWAHA_DATA || {},\n";
+  function parseData(t) {
+    var a = t.indexOf('\n{'), b = t.lastIndexOf('}');
+    if (a < 0 || b < a) throw new Error('Fichier du catalogue illisible');
+    return JSON.parse(t.slice(a + 1, b + 1));
+  }
+  function serialize(d) { return ENTETE + JSON.stringify(d, null, 2) + '\n);\n'; }
+
+  function b64ToText(b64) {
+    var bin = atob(String(b64).replace(/\s/g, ''));
+    var bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder().decode(bytes);
+  }
+  function textToB64(t) {
+    var bytes = new TextEncoder().encode(t), s = '';
+    for (var i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+    return btoa(s);
+  }
+
+  var FILES = { parfums: 'data/parfums.js', privee: 'data/collection-privee.js' };
+  var CATS = [['homme', 'Homme'], ['femme', 'Femme'], ['mixte', 'Mixte'], ['oriental', 'Oriental'], ['huiles-maison', 'Huiles et maison']];
+  var TYPES = ['Parfum', 'Extrait', 'Huile de parfum', 'Diffuseur'];
+  // Mode test : uniquement sur l'ordinateur de développement (localhost?test)
+  var TEST = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) && /[?&]test\b/.test(location.search);
+
+  /* ---------- Connexion GitHub (via Netlify, comme l'admin complet) ---------- */
+  var TOKEN_KEY = 'riwaha-gestion-token';
+  var token = null, repo = null, branch = 'main';
+
+  function storedToken() {
+    try { var t = localStorage.getItem(TOKEN_KEY); if (t) return t; } catch (e) { /* stockage indisponible */ }
+    try {
+      var u = JSON.parse(localStorage.getItem('decap-cms-user') || 'null');
+      if (u && u.token && (!u.backendName || u.backendName === 'github')) return u.token;
+    } catch (e) { /* rien */ }
+    return null;
+  }
+  function logout() {
+    token = null;
+    try { localStorage.removeItem(TOKEN_KEY); } catch (e) { /* rien */ }
+  }
+  function login() {
+    return new Promise(function (resolve, reject) {
+      var base = 'https://api.netlify.com';
+      var w = window.open(base + '/auth?provider=github&site_id=' + encodeURIComponent(location.hostname) + '&scope=repo', 'riwaha-auth', 'width=960,height=640');
+      if (!w) return reject(new Error('La fenêtre de connexion a été bloquée : autorisez les fenêtres pour ce site, puis réessayez.'));
+      function handshake(e) {
+        if (e.origin !== base || e.data !== 'authorizing:github') return;
+        window.removeEventListener('message', handshake);
+        window.addEventListener('message', authorize);
+        w.postMessage(e.data, e.origin);
+      }
+      function authorize(e) {
+        if (e.origin !== base || typeof e.data !== 'string') return;
+        var ok = e.data.match(/^authorization:github:success:(.+)$/);
+        var ko = e.data.match(/^authorization:github:error:(.+)$/);
+        if (!ok && !ko) return;
+        window.removeEventListener('message', authorize);
+        try { w.close(); } catch (err) { /* rien */ }
+        if (ok) resolve(JSON.parse(ok[1]).token); else reject(new Error('Connexion refusée par GitHub.'));
+      }
+      window.addEventListener('message', handshake);
+    });
+  }
+  async function readConfig() {
+    var t = await (await fetch('/admin/config.yml', { cache: 'no-store' })).text();
+    var r = t.match(/^\s*repo:\s*["']?([^"'\s#]+)/m);
+    var b = t.match(/^\s*branch:\s*["']?([^"'\s#]+)/m);
+    repo = r ? r[1] : null;
+    if (b) branch = b[1];
+  }
+  async function gh(method, url, body) {
+    var opts = { method: method, cache: 'no-store', headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json' } };
+    if (body) { opts.headers['Content-Type'] = 'application/json'; opts.body = JSON.stringify(body); }
+    var r = await fetch('https://api.github.com' + url, opts);
+    if (r.status === 401) { logout(); var e401 = new Error('Votre session a expiré : reconnectez-vous.'); e401.status = 401; throw e401; }
+    if (!r.ok) {
+      var e = new Error('GitHub a répondu ' + r.status); e.status = r.status;
+      try { e.message += ' (' + (await r.json()).message + ')'; } catch (err) { /* rien */ }
+      throw e;
+    }
+    return r.json();
+  }
+  var api = TEST ? testApi() : {
+    me: async function () { return (await gh('GET', '/user')).login; },
+    read: async function (path) {
+      var j = await gh('GET', '/repos/' + repo + '/contents/' + path + '?ref=' + encodeURIComponent(branch));
+      return { text: b64ToText(j.content), sha: j.sha };
+    },
+    write: async function (path, text, sha, message) {
+      var j = await gh('PUT', '/repos/' + repo + '/contents/' + path, { message: message, content: textToB64(text), sha: sha, branch: branch });
+      return j.content.sha;
+    },
+    upload: async function (path, b64, message) {
+      await gh('PUT', '/repos/' + repo + '/contents/' + path, { message: message, content: b64, branch: branch });
+    }
+  };
+  // Faux dépôt pour tester sur l'ordinateur de développement : rien n'est envoyé
+  function testApi() {
+    window.__ecrits = {};
+    return {
+      me: async function () { return 'test'; },
+      read: async function (path) { return { text: await (await fetch('/' + path, { cache: 'no-store' })).text(), sha: 'local' }; },
+      write: async function (path, text) { window.__ecrits[path] = text; return 'local'; },
+      upload: async function (path, b64) { window.__ecrits[path] = '(photo de ' + Math.round(b64.length * 0.75 / 1024) + ' Ko)'; }
+    };
+  }
+
+  /* ---------- État ---------- */
+  var S = { tab: 'parfums', q: '', filtre: 'tous', files: {}, dirty: {}, photos: {}, previews: {}, busy: false };
+  var uidN = 0;
+  function tagUid(it) { Object.defineProperty(it, '_uid', { value: 'u' + (++uidN), enumerable: false, writable: true }); return it; }
+  function listOf(tab) { var f = S.files[tab]; return tab === 'parfums' ? f.data.parfums : f.data.priveeModeles; }
+  function byUid(uid) {
+    var l = listOf(S.tab);
+    for (var i = 0; i < l.length; i++) if (l[i]._uid === uid) return l[i];
+    return null;
+  }
+  function stockOf(it) {
+    if (it.stock === '' || it.stock == null) return null;
+    var n = parseInt(it.stock, 10);
+    return isNaN(n) ? null : Math.max(0, n);
+  }
+  function setStock(it, v) {
+    if (v === null) delete it.stock; else it.stock = Math.max(0, v);
+    markDirty();
+  }
+  function fullName(it) {
+    return it.marque && norm(it.name).indexOf(norm(it.marque)) < 0 ? it.marque + ' ' + it.name : it.name;
+  }
+  function changes() {
+    var n = Object.keys(S.dirty).filter(function (k) { return S.dirty[k]; }).length;
+    return { files: n, photos: Object.keys(S.photos).length };
+  }
+  function markDirty(tab) { S.dirty[tab || S.tab] = true; renderBar(); }
+
+  async function loadAll() {
+    for (var k in FILES) {
+      var res = await api.read(FILES[k]);
+      var data = parseData(res.text);
+      if (k === 'parfums') data.parfums = data.parfums || [];
+      else data.priveeModeles = data.priveeModeles || [];
+      S.files[k] = { path: FILES[k], sha: res.sha, data: data };
+      listOf(k).forEach(tagUid);
+    }
+    S.dirty = {}; S.photos = {};
+  }
+
+  /* ---------- Affichage ---------- */
+  var listEl = $('[data-list]');
+  function show(section) {
+    ['message', 'login', 'app'].forEach(function (s) { $('[data-' + s + ']').hidden = s !== section; });
+    $('[data-add]').hidden = section !== 'app';
+    $('[data-logout]').hidden = section !== 'app' || TEST;
+  }
+  function message(html) { $('[data-message]').innerHTML = html; show('message'); }
+
+  function card(it) {
+    var st = stockOf(it), isP = S.tab === 'parfums';
+    var ph = S.photos[it._uid];
+    var thumb = ph ? ph.url : (S.previews[it.image] || imgUrl(it.image));
+    var badge = it._nouveau ? '<span class="badge new">Nouveau</span>'
+      : st === 0 ? '<span class="badge off">Rupture</span>'
+      : (st !== null && st <= 3 ? '<span class="badge low">Plus que ' + st + '</span>' : '');
+    var meta = isP ? [it.size, fmt(it.price) + ' FCFA'].filter(Boolean).join(' · ') : 'Collection Privée';
+    return '<li class="item' + (st === 0 ? ' is-off' : '') + '" data-uid="' + it._uid + '">' +
+      '<button class="item__main" type="button" data-edit="' + it._uid + '" aria-label="Modifier ' + esc(fullName(it)) + '">' +
+        '<span class="thumb">' + (thumb ? '<img src="' + esc(thumb) + '" alt="" loading="lazy">' : '') + '</span>' +
+        '<span class="item__txt"><span class="item__name">' + esc(fullName(it)) + '</span>' +
+        '<span class="item__meta">' + esc(meta) + '</span>' + badge + '</span>' +
+      '</button>' +
+      '<div class="stepper" role="group" aria-label="Stock de ' + esc(it.name) + '">' +
+        '<button type="button" data-dec="' + it._uid + '" aria-label="Un flacon de moins">−</button>' +
+        '<input type="number" inputmode="numeric" min="0" step="1" value="' + (st === null ? '' : st) + '" placeholder="∞" data-stock="' + it._uid + '" aria-label="Stock">' +
+        '<button type="button" data-inc="' + it._uid + '" aria-label="Un flacon de plus">+</button>' +
+      '</div></li>';
+  }
+  function filtered() {
+    var q = norm(S.q);
+    return listOf(S.tab).filter(function (it) {
+      var st = stockOf(it);
+      if (S.filtre === 'rupture' && st !== 0) return false;
+      if (S.filtre === 'faible' && !(st !== null && st > 0 && st <= 3)) return false;
+      if (S.filtre === 'libre' && st !== null) return false;
+      if (q && norm([it.name, it.marque, it.size].join(' ')).indexOf(q) < 0) return false;
+      return true;
+    });
+  }
+  function render() {
+    var all = listOf(S.tab);
+    var n = { tous: all.length, rupture: 0, faible: 0, libre: 0 };
+    all.forEach(function (it) { var st = stockOf(it); if (st === 0) n.rupture++; else if (st === null) n.libre++; else if (st <= 3) n.faible++; });
+    var F = [['tous', 'Tous'], ['rupture', 'En rupture'], ['faible', 'Stock faible'], ['libre', 'Non suivi']];
+    $('[data-filters]').innerHTML = F.map(function (f) {
+      return '<button type="button" data-filter="' + f[0] + '" aria-pressed="' + (S.filtre === f[0]) + '">' + f[1] + ' (' + n[f[0]] + ')</button>';
+    }).join('');
+    document.querySelectorAll('[data-tab]').forEach(function (b) { b.setAttribute('aria-selected', String(b.getAttribute('data-tab') === S.tab)); });
+    var list = filtered();
+    listEl.innerHTML = list.length ? list.map(card).join('') : '<li class="empty">Aucun résultat.</li>';
+    $('[data-count]').textContent = list.length + (S.tab === 'parfums' ? ' parfum' : ' modèle') + (list.length > 1 ? 's' : '');
+    $('[data-add]').textContent = S.tab === 'parfums' ? '+ Ajouter un parfum' : '+ Ajouter un modèle';
+    renderBar();
+  }
+  function refreshItem(uid) {
+    var li = listEl.querySelector('[data-uid="' + uid + '"]'), it = byUid(uid);
+    if (li && it) li.outerHTML = card(it);
+  }
+  function renderBar() {
+    var c = changes(), bar = $('[data-savebar]');
+    var has = c.files > 0 || c.photos > 0;
+    bar.hidden = !has;
+    document.body.classList.toggle('has-savebar', has);
+    if (has) {
+      $('[data-savebar-txt]').innerHTML = 'Modifications non enregistrées' +
+        '<small>' + (S.busy ? 'Enregistrement en cours…' : 'Pas encore en ligne') + '</small>';
+    }
+    $('[data-save]').disabled = S.busy;
+    $('[data-cancel]').disabled = S.busy;
+  }
+  var toastT;
+  function toast(text, isError) {
+    var t = $('[data-toast]');
+    t.textContent = text;
+    t.classList.toggle('is-error', !!isError);
+    t.classList.add('is-on');
+    clearTimeout(toastT);
+    toastT = setTimeout(function () { t.classList.remove('is-on'); }, isError ? 7000 : 4000);
+  }
+
+  /* ---------- Fiche d'édition ---------- */
+  var sheet = $('[data-sheet]'), form = $('[data-form]');
+  var editing = null, pendingPhoto = null, lastFocus = null;
+
+  function field(label, html, hint) {
+    return '<label class="field"><span>' + label + '</span>' + html + (hint ? '<small>' + hint + '</small>' : '') + '</label>';
+  }
+  function openSheet(it) {
+    var isNew = !it, isP = S.tab === 'parfums';
+    editing = it ? it : null;
+    pendingPhoto = null;
+    var d = it || { cat: [] };
+    var st = it ? stockOf(it) : null;
+    var ph = it && S.photos[it._uid];
+    var thumb = ph ? ph.url : (it ? (S.previews[it.image] || imgUrl(it.image)) : '');
+    $('[data-sheet-title]').textContent = isNew ? (isP ? 'Nouveau parfum' : 'Nouveau modèle') : fullName(it);
+    var h = '';
+    h += '<div class="field"><span>Photo</span><div class="photo">' +
+      '<div class="photo__img" data-photo-preview>' + (thumb ? '<img src="' + esc(thumb) + '" alt="">' : 'Pas de photo') + '</div>' +
+      '<div class="photo__btns"><label class="btn"><span data-photo-label>' + (thumb ? 'Changer la photo' : 'Ajouter une photo') + '</span>' +
+      '<input type="file" accept="image/*" data-photo-input></label>' +
+      '<small style="color:var(--muted);font-size:12.5px">Prise avec l\'appareil ou choisie dans la galerie. Réduite automatiquement.</small></div>' +
+      '</div></div>';
+    if (isP) {
+      h += '<label class="switch" style="margin-bottom:16px"><input type="checkbox" name="clair"' + (d.clair ? ' checked' : '') + '> Photo sur fond blanc (l\'assombrir)</label>';
+    }
+    h += field('Nom *', '<input type="text" name="name" required value="' + esc(d.name || '') + '" autocomplete="off">');
+    if (isP) {
+      h += field('Marque', '<input type="text" name="marque" value="' + esc(d.marque || '') + '" autocomplete="off">', 'Exemple : Lattafa. Affichée devant le nom si le nom ne la contient pas.');
+      h += '<div class="row2">' +
+        field('Contenance *', '<input type="text" name="size" required value="' + esc(d.size || '') + '" placeholder="50 ml">') +
+        field('Prix (FCFA) *', '<input type="number" name="price" required inputmode="numeric" min="0" step="500" value="' + esc(d.price != null ? d.price : '') + '">') +
+        '</div>';
+    }
+    h += field('Stock (nombre de flacons)', '<input type="number" name="stock" inputmode="numeric" min="0" step="1" value="' + (st === null ? '' : st) + '" placeholder="Vide = non suivi">', '0 = rupture de stock. Vide = toujours disponible.');
+    if (isP) {
+      h += '<div class="field"><span>Catégories *</span><div class="checks">' + CATS.map(function (c) {
+        return '<label><input type="checkbox" name="cat" value="' + c[0] + '"' + ((d.cat || []).indexOf(c[0]) >= 0 ? ' checked' : '') + '> ' + c[1] + '</label>';
+      }).join('') + '</div><small>Mixte apparaît aussi dans Homme et Femme.</small></div>';
+      h += field('Type', '<select name="type">' + TYPES.map(function (t) {
+        return '<option' + ((d.type || 'Parfum') === t ? ' selected' : '') + '>' + t + '</option>';
+      }).join('') + '</select>');
+      h += field('Description', '<textarea name="desc" rows="3">' + esc(d.desc || '') + '</textarea>', 'Deux ou trois phrases courtes.');
+      h += field('Étiquettes', '<input type="text" name="tags" value="' + esc((d.tags || []).join(', ')) + '" placeholder="Boisé, Homme, Soirée" autocomplete="off">', 'Trois mots, séparés par des virgules.');
+    }
+    if (!isNew) {
+      h += '<div class="danger-zone"><button class="btn btn--danger btn--block" type="button" data-delete>' +
+        (isP ? 'Supprimer ce parfum du site' : 'Supprimer ce modèle du site') + '</button></div>';
+    }
+    form.innerHTML = h;
+    lastFocus = document.activeElement;
+    sheet.hidden = false;
+    document.body.style.overflow = 'hidden';
+    form.scrollTop = 0;
+    setTimeout(function () { var i = form.querySelector('[name="name"]'); if (isNew && i) i.focus(); else $('[data-sheet-close]').focus(); }, 50);
+  }
+  function closeSheet() {
+    sheet.hidden = true;
+    document.body.style.overflow = '';
+    editing = null; pendingPhoto = null;
+    if (lastFocus && lastFocus.focus && document.contains(lastFocus)) lastFocus.focus();
+  }
+
+  // Photo : redimensionnée à 1200 px maximum et compressée en JPEG
+  function toJpeg(file) {
+    return new Promise(function (resolve, reject) {
+      var src = URL.createObjectURL(file), img = new Image();
+      img.onload = function () {
+        var k = Math.min(1, 1200 / Math.max(img.naturalWidth, img.naturalHeight));
+        var c = document.createElement('canvas');
+        c.width = Math.round(img.naturalWidth * k); c.height = Math.round(img.naturalHeight * k);
+        var g = c.getContext('2d');
+        g.fillStyle = '#fff'; g.fillRect(0, 0, c.width, c.height);
+        g.drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(src);
+        c.toBlob(function (blob) {
+          if (!blob) return reject(new Error('Photo impossible à préparer.'));
+          var r = new FileReader();
+          r.onload = function () { resolve({ b64: String(r.result).split(',')[1], url: URL.createObjectURL(blob), kb: Math.round(blob.size / 1024) }); };
+          r.onerror = function () { reject(new Error('Photo illisible.')); };
+          r.readAsDataURL(blob);
+        }, 'image/jpeg', 0.82);
+      };
+      img.onerror = function () { URL.revokeObjectURL(src); reject(new Error('Format de photo non reconnu : utilisez une photo JPG ou PNG.')); };
+      img.src = src;
+    });
+  }
+  form.addEventListener('change', async function (e) {
+    if (!e.target.matches('[data-photo-input]')) return;
+    var file = e.target.files && e.target.files[0];
+    if (!file) return;
+    var box = $('[data-photo-preview]', form);
+    box.textContent = 'Préparation…';
+    try {
+      pendingPhoto = await toJpeg(file);
+      box.innerHTML = '<img src="' + pendingPhoto.url + '" alt="">';
+      $('[data-photo-label]', form).textContent = 'Changer la photo';
+      toast('Photo prête (' + pendingPhoto.kb + ' Ko).');
+    } catch (err) {
+      pendingPhoto = null;
+      box.textContent = 'Échec';
+      toast(err.message, true);
+    }
+  });
+
+  function applySheet() {
+    var isP = S.tab === 'parfums';
+    var v = function (n) { var el = form.elements[n]; return el ? String(el.value).trim() : ''; };
+    var name = v('name');
+    if (!name) { toast('Indiquez le nom.', true); form.elements.name.focus(); return; }
+    var cats = [];
+    if (isP) {
+      if (!v('size')) { toast('Indiquez la contenance (ex. 50 ml).', true); form.elements.size.focus(); return; }
+      if (v('price') === '' || isNaN(parseInt(v('price'), 10))) { toast('Indiquez le prix en chiffres.', true); form.elements.price.focus(); return; }
+      form.querySelectorAll('[name="cat"]:checked').forEach(function (c) { cats.push(c.value); });
+      if (!cats.length) { toast('Cochez au moins une catégorie.', true); return; }
+    }
+    var isNew = !editing;
+    var it = editing || tagUid({});
+    // L'ordre des champs suit celui des fichiers existants
+    var o = {};
+    o.name = name;
+    if (isP) {
+      if (v('marque')) o.marque = v('marque');
+      if (v('type') && v('type') !== 'Parfum') o.type = v('type');
+      o.size = v('size');
+      o.price = Math.max(0, parseInt(v('price'), 10));
+    }
+    if (v('stock') !== '') o.stock = Math.max(0, parseInt(v('stock'), 10) || 0);
+    if (isP) {
+      o.cat = cats;
+      o.desc = v('desc');
+      o.tags = v('tags').split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+    }
+    if (it.image) o.image = it.image;
+    if (isP && form.elements.clair && form.elements.clair.checked) o.clair = true;
+    // On garde les autres réglages existants (signature, cadrage…)
+    ['pos', 'signature'].forEach(function (k) { if (it[k] !== undefined) o[k] = it[k]; });
+    Object.keys(it).forEach(function (k) { delete it[k]; });
+    Object.keys(o).forEach(function (k) { it[k] = o[k]; });
+    // Marqueur « Nouveau » réservé à l'écran : jamais écrit dans le catalogue
+    if (isNew) Object.defineProperty(it, '_nouveau', { value: true, enumerable: false, writable: true, configurable: true });
+    if (pendingPhoto) S.photos[it._uid] = pendingPhoto;
+    if (isNew) listOf(S.tab).unshift(it);
+    markDirty();
+    closeSheet();
+    if (isNew) { S.filtre = 'tous'; S.q = ''; $('[data-search]').value = ''; }
+    render();
+    toast(isNew ? 'Ajouté. Pensez à enregistrer pour le mettre en ligne.' : 'Modifié. Pensez à enregistrer.');
+  }
+
+  /* ---------- Enregistrement ---------- */
+  async function save() {
+    if (S.busy) return;
+    S.busy = true; renderBar();
+    try {
+      // 1. Photos nouvelles
+      for (var tab in S.files) {
+        var list = listOf(tab);
+        for (var i = 0; i < list.length; i++) {
+          var it = list[i], ph = S.photos[it._uid];
+          if (!ph) continue;
+          var dir = tab === 'parfums' ? 'assets/img/' : 'assets/img/cp/';
+          var file = slug(it.name) + '-' + Date.now().toString(36) + '.jpg';
+          await api.upload(dir + file, ph.b64, 'Gestion mobile : photo de ' + it.name);
+          it.image = '/' + dir + file;
+          S.previews[it.image] = ph.url;
+          delete S.photos[it._uid];
+          S.dirty[tab] = true;
+        }
+      }
+      // 2. Fichiers du catalogue
+      for (var k in S.dirty) {
+        if (!S.dirty[k]) continue;
+        var f = S.files[k];
+        f.sha = await api.write(f.path, serialize(f.data), f.sha, 'Gestion mobile : mise à jour de ' + f.path.split('/').pop());
+        S.dirty[k] = false;
+      }
+      listOf('parfums').concat(listOf('privee')).forEach(function (x) { delete x._nouveau; });
+      toast('Enregistré ✓ Le site sera à jour dans environ 1 minute.');
+    } catch (e) {
+      if (e.status === 409 || e.status === 422) toast('Le catalogue a été modifié ailleurs entre-temps. Rechargez la page, puis refaites vos changements.', true);
+      else if (e.status === 401) { toast(e.message, true); show('login'); }
+      else toast('Échec de l\'enregistrement : ' + e.message + '. Vérifiez votre connexion et réessayez.', true);
+    } finally {
+      S.busy = false;
+      render();
+    }
+  }
+  async function cancelAll() {
+    if (!confirm('Annuler toutes les modifications non enregistrées ?')) return;
+    message('<p>Rechargement…</p>');
+    try { await loadAll(); show('app'); render(); } catch (e) { message('<p>' + esc(e.message) + '</p>'); }
+  }
+
+  /* ---------- Événements ---------- */
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('button');
+    if (!t) return;
+    if (t.matches('[data-tab]')) { S.tab = t.getAttribute('data-tab'); S.filtre = 'tous'; render(); return; }
+    if (t.matches('[data-filter]')) { S.filtre = t.getAttribute('data-filter'); render(); return; }
+    if (t.matches('[data-inc]') || t.matches('[data-dec]')) {
+      var uid = t.getAttribute('data-inc') || t.getAttribute('data-dec'), it = byUid(uid);
+      if (!it) return;
+      var st = stockOf(it);
+      if (t.matches('[data-inc]')) setStock(it, st === null ? 1 : st + 1);
+      else if (st === null) { toast('Stock non suivi : tapez d\'abord le nombre de flacons.'); return; }
+      else setStock(it, st - 1);
+      refreshItem(uid);
+      return;
+    }
+    if (t.matches('[data-edit]')) { var it2 = byUid(t.getAttribute('data-edit')); if (it2) openSheet(it2); return; }
+    if (t.matches('[data-add]')) { openSheet(null); return; }
+    if (t.matches('[data-sheet-close]')) { closeSheet(); return; }
+    if (t.matches('[data-sheet-ok]')) { applySheet(); return; }
+    if (t.matches('[data-delete]')) {
+      if (!editing || !confirm('Supprimer « ' + fullName(editing) + ' » du site ?')) return;
+      var l = listOf(S.tab), idx = l.indexOf(editing);
+      if (idx >= 0) l.splice(idx, 1);
+      delete S.photos[editing._uid];
+      markDirty(); closeSheet(); render();
+      toast('Supprimé. Pensez à enregistrer.');
+      return;
+    }
+    if (t.matches('[data-save]')) { save(); return; }
+    if (t.matches('[data-cancel]')) { cancelAll(); return; }
+    if (t.matches('[data-logout]')) { logout(); show('login'); return; }
+    if (t.matches('[data-do-login]')) {
+      t.disabled = true;
+      login().then(function (tok) {
+        token = tok;
+        try { localStorage.setItem(TOKEN_KEY, tok); } catch (err) { /* rien */ }
+        return start();
+      }).catch(function (err) { toast(err.message, true); }).then(function () { t.disabled = false; });
+    }
+  });
+  listEl.addEventListener('change', function (e) {
+    if (!e.target.matches('[data-stock]')) return;
+    var uid = e.target.getAttribute('data-stock'), it = byUid(uid);
+    if (!it) return;
+    var raw = String(e.target.value).trim();
+    setStock(it, raw === '' ? null : (parseInt(raw, 10) || 0));
+    refreshItem(uid);
+  });
+  $('[data-search]').addEventListener('input', function (e) { S.q = e.target.value; render(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !sheet.hidden) closeSheet(); });
+  window.addEventListener('beforeunload', function (e) {
+    var c = changes();
+    if (c.files || c.photos) { e.preventDefault(); e.returnValue = ''; }
+  });
+
+  /* ---------- Démarrage ---------- */
+  async function start() {
+    try {
+      if (!TEST) {
+        await readConfig();
+        if (!repo || /VOTRE-COMPTE/i.test(repo)) {
+          return message('<h1>Presque prêt</h1><p>La gestion n\'est pas encore reliée à GitHub : renseignez la ligne <b>repo</b> du fichier <code>admin/config.yml</code> (voir le README, « Mettre en place l\'espace admin »).</p>');
+        }
+        token = token || storedToken();
+        if (!token) return show('login');
+        await api.me();
+      }
+      message('<p>Chargement du catalogue…</p>');
+      await loadAll();
+      show('app');
+      render();
+    } catch (e) {
+      if (e.status === 401) { show('login'); toast(e.message, true); return; }
+      message('<h1>Oups</h1><p>' + esc(e.message) + '</p><p><button class="btn btn--gold" type="button" onclick="location.reload()">Réessayer</button></p>');
+    }
+  }
+  start();
+})();
+</script>
+</body>
+</html>

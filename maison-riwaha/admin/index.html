@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin · Maison Riwaha</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <!-- Espace admin Maison Riwaha (Decap CMS). Les formulaires sont décrits dans config.yml. -->
+  <script>
+    // Sur téléphone, l'admin complet est trop large : on ouvre la gestion rapide (mobile.html).
+    // Pour forcer l'admin complet : /admin/?complet
+    if (window.matchMedia('(max-width: 760px)').matches && !/[?&]complet\b/.test(location.search) &&
+        !/access_token|error=/.test(location.hash)) {
+      location.replace('/admin/mobile.html');
+    }
+  </script>
+  <script>window.CMS_MANUAL_INIT = true;</script>
+  <script src="https://unpkg.com/decap-cms@3.17.1/dist/decap-cms.js"></script>
+  <script>
+    /* Format des fichiers du catalogue (data/*.js) :
+       un objet JSON entouré de deux lignes, pour que le site puisse les charger
+       comme de simples scripts (y compris en ouvrant index.html par double-clic). */
+    var ENTETE = "/* Catalogue Maison Riwaha : fichier modifié depuis l'espace admin (/admin). */\n" +
+                 "window.RIWAHA_DATA = Object.assign(window.RIWAHA_DATA || {},\n";
+    CMS.registerCustomFormat('riwaha-js', 'js', {
+      fromFile: function (texte) {
+        var debut = texte.indexOf('\n{');
+        var fin = texte.lastIndexOf('}');
+        if (debut < 0 || fin < debut) throw new Error('Fichier du catalogue illisible');
+        return JSON.parse(texte.slice(debut + 1, fin + 1));
+      },
+      toFile: function (donnees) {
+        return ENTETE + JSON.stringify(donnees, null, 2) + '\n);\n';
+      }
+    });
+    CMS.init();
+  </script>
+</body>
+</html>

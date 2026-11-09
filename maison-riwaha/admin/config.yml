@@ -1,0 +1,265 @@
+# ============================================================================
+# MAISON RIWAHA – Espace admin (Decap CMS)
+# Adresse : https://maisonriwaha.com/admin
+# Chaque enregistrement modifie les fichiers data/*.js sur GitHub
+# (format « riwaha-js », défini dans admin/index.html),
+# puis Netlify remet le site à jour tout seul (environ 1 minute).
+# ============================================================================
+
+backend:
+  name: github
+  # ⚠️ À remplacer par « votre-compte-github/nom-du-depot » (voir README)
+  repo: VOTRE-COMPTE-GITHUB/maison-riwaha
+  branch: main
+  commit_messages:
+    update: "Admin : mise à jour de {{slug}}"
+    uploadMedia: "Admin : ajout de la photo {{path}}"
+    deleteMedia: "Admin : suppression de {{path}}"
+
+locale: fr
+site_url: https://maisonriwaha.com
+display_url: https://maisonriwaha.com
+logo_url: /apple-touch-icon.png
+
+# Les photos envoyées depuis l'admin sont rangées dans assets/img/
+media_folder: assets/img
+public_folder: /assets/img
+
+collections:
+  # --------------------------------------------------------------------------
+  - name: boutique
+    label: Boutique
+    description: Les parfums, leurs prix, photos et stock, et la Collection Privée.
+    format: riwaha-js
+    extension: js
+    editor:
+      preview: false
+    files:
+      - name: parfums
+        label: Parfums (prix, photos, stock)
+        file: data/parfums.js
+        fields:
+          - label: Parfums
+            name: parfums
+            widget: list
+            collapsed: true
+            add_to_top: true
+            label_singular: parfum
+            summary: "{{fields.name}} · {{fields.size}} · {{fields.price}} FCFA · stock : {{fields.stock}}"
+            fields:
+              - label: Nom du parfum
+                name: name
+                widget: string
+                hint: "Exemple : Khamrah. Si vous renommez un parfum, il sortira des paniers déjà commencés par vos clients."
+              - label: Marque
+                name: marque
+                widget: string
+                required: false
+                hint: "Exemple : Lattafa. Sert à la recherche et à « Notre sélection ». Affichée devant le nom si le nom ne la contient pas."
+              - label: Type
+                name: type
+                widget: select
+                required: false
+                options: ["Parfum", "Extrait", "Huile de parfum", "Diffuseur"]
+                hint: "Laissez vide pour « Parfum »."
+              - label: Contenance
+                name: size
+                widget: string
+                hint: "Exemple : 50 ml ou 100 ml. Gardez ce format : la section Tarifs s'en sert."
+              - label: Prix (FCFA)
+                name: price
+                widget: number
+                value_type: int
+                min: 0
+                hint: "En chiffres, sans espace : 35000 s'affiche « 35 000 FCFA »."
+              - label: Stock (nombre de flacons)
+                name: stock
+                widget: number
+                value_type: int
+                min: 0
+                required: false
+                hint: "0 = rupture : le parfum reste visible mais ne peut plus être commandé (bouton « Me prévenir »). De 1 à 3 : « Plus que N » s'affiche. Vide = stock non suivi, toujours disponible. Pensez à le mettre à jour après chaque vente."
+              - label: Catégories
+                name: cat
+                widget: select
+                multiple: true
+                min: 1
+                options:
+                  - { label: "Homme", value: "homme" }
+                  - { label: "Femme", value: "femme" }
+                  - { label: "Mixte (apparaît aussi dans Homme et Femme)", value: "mixte" }
+                  - { label: "Oriental", value: "oriental" }
+                  - { label: "Huiles et maison", value: "huiles-maison" }
+              - label: Description
+                name: desc
+                widget: text
+                hint: "Deux ou trois phrases courtes : seules 3 lignes s'affichent sur la carte."
+              - label: Étiquettes
+                name: tags
+                widget: list
+                required: false
+                max: 3
+                field: { label: "Étiquette", name: tag, widget: string }
+                hint: "3 mots courts, par exemple : Boisé, Homme, Soirée."
+              - label: Photo
+                name: image
+                widget: image
+                required: false
+                choose_url: false
+                hint: "JPG, PNG ou WebP (pas de HEIC d'iPhone), idéalement moins de 300 Ko. Nom de fichier simple, sans espaces ni accents : khamrah.jpg."
+              - label: Photo sur fond blanc (l'assombrir pour l'ambiance du site)
+                name: clair
+                widget: boolean
+                required: false
+                default: false
+              - label: Cadrage de la photo (avancé)
+                name: pos
+                widget: string
+                required: false
+                hint: "Laissez vide en général. Exemple : « center top » pour montrer le haut de la photo."
+              - label: Signature de la maison (coup de cœur)
+                name: signature
+                widget: object
+                required: false
+                collapsed: true
+                hint: "Remplissez la famille et l'accroche pour mettre ce parfum en avant dans « La signature de la maison » (4 conseillés). Laissez vide sinon."
+                fields:
+                  - { label: "Famille olfactive", name: famille, widget: string, required: false, hint: "Exemple : Oud oriental" }
+                  - { label: "Accroche", name: accroche, widget: string, required: false, hint: "Une phrase courte." }
+                  - label: Deux accords
+                    name: accords
+                    widget: list
+                    required: false
+                    max: 2
+                    field: { label: "Accord", name: accord, widget: string }
+
+      - name: collection-privee
+        label: Collection Privée (prix unique, modèles, stock)
+        file: data/collection-privee.js
+        fields:
+          - { label: "Prix unique (FCFA)", name: priveePrix, widget: number, value_type: int, min: 0 }
+          - { label: "Contenance", name: priveeContenance, widget: string, hint: "Exemple : 50 ml" }
+          - label: Modèles
+            name: priveeModeles
+            widget: list
+            collapsed: true
+            add_to_top: true
+            label_singular: modèle
+            summary: "{{fields.name}} · stock : {{fields.stock}}"
+            fields:
+              - { label: "Nom", name: name, widget: string }
+              - label: Photo
+                name: image
+                widget: image
+                required: false
+                choose_url: false
+                hint: "JPG, PNG ou WebP, idéalement moins de 300 Ko."
+              - label: Stock
+                name: stock
+                widget: number
+                value_type: int
+                min: 0
+                required: false
+                hint: "0 = rupture. Vide = stock non suivi, toujours disponible."
+
+  # --------------------------------------------------------------------------
+  - name: avis
+    label: Avis clients
+    format: riwaha-js
+    extension: js
+    editor:
+      preview: false
+    files:
+      - name: avis
+        label: Avis clients
+        file: data/avis.js
+        fields:
+          - label: Avis
+            name: avis
+            widget: list
+            required: false
+            label_singular: avis
+            summary: "{{fields.prenom}} · {{fields.quartier}}"
+            hint: "Uniquement de vrais avis, avec l'accord du client. Tant que la liste est vide, la section invite à envoyer un avis sur WhatsApp."
+            fields:
+              - { label: "Avis", name: texte, widget: text }
+              - { label: "Prénom", name: prenom, widget: string }
+              - { label: "Quartier", name: quartier, widget: string, required: false }
+              - { label: "Parfum acheté", name: parfum, widget: string, required: false }
+
+  # --------------------------------------------------------------------------
+  - name: reglages
+    label: Réglages du site
+    format: riwaha-js
+    extension: js
+    editor:
+      preview: false
+    files:
+      - name: contact
+        label: Contact, réseaux et vidéo
+        file: data/reglages.js
+        fields:
+          - label: Numéro WhatsApp (format international)
+            name: whatsapp
+            widget: string
+            pattern: ["^[0-9]{8,15}$", "Chiffres uniquement, sans + ni espaces. Exemple : 221710110894"]
+            hint: "C'est le numéro qui reçoit les commandes."
+          - { label: "Numéro WhatsApp affiché", name: whatsappAffiche, widget: string, hint: "Exemple : +221 71 011 08 94" }
+          - { label: "Message WhatsApp par défaut", name: message, widget: text }
+          - { label: "Instagram (adresse complète)", name: instagram, widget: string, required: false, hint: "Laissez vide pour masquer l'icône." }
+          - { label: "Instagram affiché", name: instagramAffiche, widget: string, required: false }
+          - { label: "TikTok (adresse complète)", name: tiktok, widget: string, required: false }
+          - { label: "Facebook (adresse complète)", name: facebook, widget: string, required: false }
+          - label: Vidéo de la section « Le rituel » (.mp4)
+            name: videoRituel
+            widget: file
+            required: false
+            choose_url: false
+            media_folder: /assets/video
+            public_folder: /assets/video
+            hint: "MP4 de moins de 3 Mo de préférence. Laissez vide pour afficher l'illustration dessinée."
+          - label: Fin de la boucle vidéo (secondes)
+            name: videoRituelFin
+            widget: number
+            value_type: float
+            min: 0
+            required: false
+            hint: "Pour couper une fin indésirable (écran « Regarder à nouveau »…). 0 = jusqu'au bout."
+
+      - name: selection
+        label: Notre sélection (marques)
+        file: data/selection.js
+        fields:
+          - label: Maisons
+            name: maisons
+            widget: list
+            label_singular: maison
+            summary: "{{fields.name}} · {{fields.origine}}"
+            fields:
+              - { label: "Nom de la maison", name: name, widget: string, hint: "Écrit exactement comme le champ « Marque » des parfums : leur nombre est compté tout seul." }
+              - { label: "Origine", name: origine, widget: string, hint: "Exemple : Maison française" }
+              - { label: "Lien (avancé)", name: lien, widget: string, required: false, hint: "#collection pour la Collection Privée. Laissez vide sinon." }
+
+      - name: tarifs
+        label: Tarifs (formats)
+        file: data/tarifs.js
+        fields:
+          - label: Formats
+            name: formats
+            widget: list
+            label_singular: format
+            summary: "{{fields.titre}}"
+            fields:
+              - { label: "Titre", name: titre, widget: string }
+              - { label: "Contenance", name: size, widget: string, hint: "Les prix mini et maxi sont calculés sur les parfums de cette contenance." }
+              - { label: "Prix fixe (FCFA)", name: prixFixe, widget: number, value_type: int, required: false, hint: "Seulement pour un prix unique (Collection Privée)." }
+              - { label: "Texte avant le prix", name: prefixe, widget: string, required: false, hint: "Exemple : Prix unique" }
+              - { label: "Mis en avant (« Le plus pris »)", name: vedette, widget: boolean, required: false, default: false }
+              - label: Points
+                name: points
+                widget: list
+                field: { label: "Point", name: point, widget: string }
+                hint: "Dans le texte, {min} et {max} deviennent les prix mini et maxi, {n} le nombre de modèles de la Collection Privée."
+              - { label: "Texte du bouton", name: bouton, widget: string }
+              - { label: "Lien du bouton (avancé)", name: lien, widget: string, required: false, hint: "#collection pour la Collection Privée." }
+              - { label: "Recherche du bouton", name: recherche, widget: string, required: false, hint: "Ce que le bouton cherche dans la boutique. Exemple : 50 ml" }
